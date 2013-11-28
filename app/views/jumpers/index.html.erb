@@ -14,15 +14,13 @@
       <th>Nextofkin</th>
       <th>License</th>
       <th></th>
-      <th></th>
-      <th></th>
     </tr>
   </thead>
 
   <tbody>
     <% @jumpers.each do |jumper| %>
       <tr>
-        <td><%= jumper.name %></td>
+        <td><%= link_to jumper.name, edit_jumper_path(jumper) %></td>
         <td><%= jumper.license %></td>
         <td><%= jumper.ratings.map(&:name).join(",") %></td>
         <td><%= jumper.description %></td>
@@ -32,8 +30,6 @@
         <td><%= jumper.verified %></td>
         <td><%= jumper.nextofkin %></td>
         <td><%= jumper.license %></td>
-        <td><%= link_to 'Show', jumper %></td>
-        <td><%= link_to 'Edit', edit_jumper_path(jumper) %></td>
         <td><%= link_to 'Destroy', jumper, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
