@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  height: 1
+  price: 1
+  paid: false
+  approved: false
+  jumptype: MyString
+  jumpmaster: false
+
+two:
+  height: 1
+  price: 1
+  paid: false
+  approved: false
+  jumptype: MyString
+  jumpmaster: false

@@ -1,0 +1,45 @@
+<h1>Listing jumpers</h1>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>License</th>
+      <th>Rating</th>
+      <th>Description</th>
+      <th>Club</th>
+      <th>Phone</th>
+      <th>Email</th>
+      <th>Verified</th>
+      <th>Nextofkin</th>
+      <th>License</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @jumpers.each do |jumper| %>
+      <tr>
+        <td><%= jumper.name %></td>
+        <td><%= jumper.license %></td>
+        <td><%= jumper.ratings.map(&:name).join(",") %></td>
+        <td><%= jumper.description %></td>
+        <td><%= jumper.clubs.map(&:name).join(",") %></td>
+        <td><%= jumper.phone %></td>
+        <td><%= jumper.email %></td>
+        <td><%= jumper.verified %></td>
+        <td><%= jumper.nextofkin %></td>
+        <td><%= jumper.license %></td>
+        <td><%= link_to 'Show', jumper %></td>
+        <td><%= link_to 'Edit', edit_jumper_path(jumper) %></td>
+        <td><%= link_to 'Destroy', jumper, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Jumper', new_jumper_path %>

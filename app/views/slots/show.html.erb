@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Height:</strong>
+  <%= @slot.height %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @slot.price %>
+</p>
+
+<p>
+  <strong>Paid:</strong>
+  <%= @slot.paid %>
+</p>
+
+<p>
+  <strong>Approved:</strong>
+  <%= @slot.approved %>
+</p>
+
+<p>
+  <strong>Jumptype:</strong>
+  <%= @slot.jumptype %>
+</p>
+
+<p>
+  <strong>Jumpmaster:</strong>
+  <%= @slot.jumpmaster %>
+</p>
+
+<%= link_to 'Edit', edit_slot_path(@slot) %> |
+<%= link_to 'Back', slots_path %>

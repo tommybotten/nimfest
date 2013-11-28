@@ -1,0 +1,30 @@
+<div>
+  <% @loads.each do |load| %>
+    <h2><%= link_to "Load X", edit_load_path(load) %></h2>
+    <p><b>Pilot <%= load.pilot %> / Aircraft <%= load.aircraft.name %> / Hoppfelt: Rakkestad</b></p>
+    <table class="table table-bordered">
+      <thead>
+        <tr class="error">
+          <th>Jumper</th>
+          <th>License</th>
+          <th>Height</th>
+          <th>Jumptype</th>
+          <th>Price</th>
+        </tr>
+      </thead>
+      <% load.slots.each do |slot| -%>
+        <tr <%= 'class=success' if slot.jumpmaster? -%>>
+          <td><%= slot.jumper.name %></td>
+          <td><%= slot.jumper.license %></td>
+          <td><%= slot.height %></td>
+          <td><%= slot.jumptype %></td>
+          <td>230</td>
+        </tr>
+      <% end -%>
+    </table>
+  <% end %>
+</div>
+
+<br>
+
+<%= link_to 'New Load', new_load_path %>

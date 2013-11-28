@@ -1,0 +1,54 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @jumper.name %>
+</p>
+
+<p>
+  <strong>License:</strong>
+  <%= @jumper.license %>
+</p>
+
+<p>
+  <strong>Rating:</strong>
+  <%= @jumper.ratings.map(&:name).join(",") %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @jumper.description %>
+</p>
+
+<p>
+  <strong>Club:</strong>
+  <%= @jumper.clubs.map(&:name).join(",") %>
+</p>
+
+<p>
+  <strong>Phone:</strong>
+  <%= @jumper.phone %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @jumper.email %>
+</p>
+
+<p>
+  <strong>Verified:</strong>
+  <%= @jumper.verified %>
+</p>
+
+<p>
+  <strong>Nextofkin:</strong>
+  <%= @jumper.nextofkin %>
+</p>
+
+<p>
+  <strong>License:</strong>
+  <%= @jumper.license %>
+</p>
+
+<%= link_to 'Edit', edit_jumper_path(@jumper) %> |
+<%= link_to 'Back', jumpers_path %>

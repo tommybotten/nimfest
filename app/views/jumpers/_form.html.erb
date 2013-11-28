@@ -1,0 +1,60 @@
+<%= form_for(@jumper) do |f| %>
+  <% if @jumper.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@jumper.errors.count, "error") %> prohibited this jumper from being saved:</h2>
+
+      <ul>
+      <% @jumper.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :license %><br>
+    <%= f.number_field :license %>
+  </div>
+  <div class="field">FIXME: This does not work...
+    <%= f.label :ratings %><br>
+    <%= fields_for :ratings do |form| %>
+      <%= form.check_box :name %>
+    <% end %>
+    <%= f.text_field :ratings %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br>
+    <%= f.text_area :description %>
+  </div>
+  <div class="field">
+    <%= f.label :clubs %><br>
+    <%= f.collection_select :clubs, Club.order(:name),:id,:name, include_blank: true %>
+  </div>
+  <div class="field">
+    <%= f.label :phone %><br>
+    <%= f.number_field :phone %>
+  </div>
+  <div class="field">
+    <%= f.label :email %><br>
+    <%= f.text_field :email %>
+  </div>
+  <div class="field">
+    <%= f.label :verified %><br>
+    <%= f.text_field :verified %>
+  </div>
+  <div class="field">
+    <%= f.label :nextofkin %><br>
+    <%= f.text_area :nextofkin %>
+  </div>
+  <div class="field">
+    <%= f.label :license %><br>
+    <%= f.text_field :license %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
