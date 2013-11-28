@@ -26,3 +26,12 @@ A detailed guide on how to setup in production environments will come. For devel
 * Store/shopping capabilities
 * ERP/CRM capabilities
 
+
+## Contributing
+
+All kinds of help is appreciated. Fork, submit feature requests/issues, pull requests - anything goes :)
+
+See the datamodel:
+![DataModel](https://github.com/tommybotten/nimfest/raw/master/erd.png)
+
+
