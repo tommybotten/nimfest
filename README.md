@@ -11,7 +11,8 @@ A detailed guide on how to setup in production environments will come. For devel
 ## Features
 
 * Jumper self service registration and statistics
-* Simple manifesting and 
+* Simple manifesting and aircraft handling
+* Simple statistics
 
 
 ## To do:
