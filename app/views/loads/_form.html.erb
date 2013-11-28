@@ -12,6 +12,11 @@
   <% end %>
 
   <div class="field">
+    <%= f.label :aircraft %><br>
+    <%= f.collection_select :aircraft, Aircraft.order(:name),:id,:name, include_blank: true %>
+  </div>
+
+  <div class="field">
     <%= f.label :pilot %><br>
     <%= f.text_field :pilot %>
   </div>
