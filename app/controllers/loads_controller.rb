@@ -69,6 +69,6 @@ class LoadsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def load_params
-      params.require(:load).permit(:pilot, :flighttime, :references)
+      params.require(:load).permit(:pilot, :flighttime, :location)
     end
 end
