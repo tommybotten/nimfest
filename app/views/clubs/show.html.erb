@@ -11,8 +11,8 @@
 </p>
 
 <p>
-  <strong>Jumper:</strong>
-  <%= @club.jumper %>
+  <strong>Skydivers:</strong>
+  <%= @club.jumpers.map(&:name).join(",") %>
 </p>
 
 <%= link_to 'Edit', edit_club_path(@club) %> |

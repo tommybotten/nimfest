@@ -1,14 +1,12 @@
 <h1>Listing aircrafts</h1>
 
-<table>
+<table class="table table-bordered">
   <thead>
     <tr>
-      <th>Type</th>
       <th>Name</th>
-      <th>Price</th>
+      <th>Type</th>
+      <th>Hourly Price</th>
       <th>Capacity</th>
-      <th></th>
-      <th></th>
       <th></th>
     </tr>
   </thead>
@@ -16,12 +14,10 @@
   <tbody>
     <% @aircrafts.each do |aircraft| %>
       <tr>
-        <td><%= aircraft.type %></td>
-        <td><%= aircraft.name %></td>
+        <td><%= link_to aircraft.name, edit_aircraft_path(aircraft) %></td>
+        <td><%= aircraft.aircraft_type %></td>
         <td><%= aircraft.price %></td>
         <td><%= aircraft.capacity %></td>
-        <td><%= link_to 'Show', aircraft %></td>
-        <td><%= link_to 'Edit', edit_aircraft_path(aircraft) %></td>
         <td><%= link_to 'Destroy', aircraft, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
