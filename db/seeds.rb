@@ -1,13 +1,3 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
-#
-#
-#   The order is important!
 
    Club.delete_all
    Club.create(name: 'Nimbus FSK', description: 'Rakkestad')
@@ -30,24 +20,22 @@
 		capacity: '7')
 
    Jumper.delete_all
-   Jumper.create(name: 'Espen Gundersen', license: 'B', description: 'High guy',
+   Jumper.create(name: 'Espen Gundersen', license: 'B', description: '',
 		phone: '41930567', email: 'espen11@gmail.com', verified: 'true',
-		nextofkin: 'Atle Gundersen, Far, 92881090', 
+		nextofkin: 'Lorem Ipsum Dolor sit amet', 
 		created_at: '1000-01-01 00:00:00', 
 		updated_at: '1000-01-01 00:00:01', licensenumber: '113642',
 		:clubs => Club.where(:name => ['Nimbus FSK']))
-   Jumper.create(name: 'Tommy Botten Jensen', license: 'EL', description: 'Fat guy',
+   Jumper.create(name: 'Tommy Botten Jensen', license: 'D', description: '',
 		phone: '48012441', email: 'tommybjensen@gmail.com', verified: 'true',
-		nextofkin: 'Willy Jensen, Far, xxxxxxxx',
+		nextofkin: 'Lorem Ipsum Dolor sit amet',
 		:clubs => Club.where(:name => ['Nimbus FSK','Oslo FSK']),
 		:ratings => Rating.where(:name => ['I-3','Demo-2']))
 
    Load.delete_all
-   Load.create(pilot: 'Martin Stene', flighttime: '35', location: 'Rakkestad?',
-		loadfortheday: '2', departure_timestamp: '1000-01-01 00:00:00')
-#		:aircraft => Aircraft.where(:name => ['LN-VYN']),
-#		:jumper => Jumper.where(:name => ['Espen Gundersen']))
+   Load.create(pilot: 'Martin Stene', flighttime: '35', location: 'Rakkestad', loadfortheday: '2', departure_timestamp: Time.now, aircraft: Aircraft.first)
 
-
+  Slot.create(height: '6000', jumptype: 'Tren', :load => Load.first, :jumper => Jumper.first)
+  Slot.create(height: '6000', jumptype: 'Tren', :load => Load.first, :jumper => Jumper.last)
 
    puts "Success: Test data loaded"
