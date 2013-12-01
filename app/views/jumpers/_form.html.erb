@@ -1,6 +1,6 @@
 <%= form_for(@jumper) do |f| %>
   <% if @jumper.errors.any? %>
-    <div id="error_explanation">
+    <td id="error_explanation">
       <h2><%= pluralize(@jumper.errors.count, "error") %> prohibited this jumper from being saved:</h2>
 
       <ul>
@@ -8,53 +8,63 @@
         <li><%= msg %></li>
       <% end %>
       </ul>
-    </div>
+    </td>
   <% end %>
-
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :license %><br>
-    <%= f.number_field :license %>
-  </div>
-  <div class="field">FIXME: This does not work...
-    <%= f.label :ratings %><br>
-    <%= fields_for :ratings do |form| %>
-      <%= form.check_box :name %>
-    <% end %>
-    <%= f.text_field :ratings %>
-  </div>
-  <div class="field">
-    <%= f.label :description %><br>
-    <%= f.text_area :description %>
-  </div>
-  <div class="field">
-    <%= f.label :clubs %><br>
-    <%= f.collection_select :clubs, Club.order(:name),:id,:name, include_blank: true %>
-  </div>
-  <div class="field">
-    <%= f.label :phone %><br>
-    <%= f.number_field :phone %>
-  </div>
-  <div class="field">
-    <%= f.label :email %><br>
-    <%= f.text_field :email %>
-  </div>
-  <div class="field">
-    <%= f.label :verified %><br>
-    <%= f.text_field :verified %>
-  </div>
-  <div class="field">
-    <%= f.label :nextofkin %><br>
-    <%= f.text_area :nextofkin %>
-  </div>
-  <div class="field">
-    <%= f.label :licensenumber %><br>
-    <%= f.text_field :licensenumber %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+  <table class="table">
+    <tr>
+    <td class="field">
+      <%= f.label :name %><br>
+      <%= f.text_field :name %>
+    </td>
+    <td class="field">
+      <%= f.label :license %><br>
+      <%= select_tag "license", options_for_select(Jumper.licenses) %>
+    </td>
+  </tr>
+  <tr>
+    <td class="field">
+      <%= f.label :licensenumber %><br>
+      <%= f.text_field :licensenumber %>
+    </td>
+    <td class="field">
+      <%= f.label :phone %><br>
+      <%= f.number_field :phone %>
+    </td>
+  </tr>
+  <tr>
+    <td class="field">
+      <%= f.label :clubs %><br>
+      <%= collection_check_boxes(:jumper, :clubs, Club.all, :id, :name) do |club| %>
+        <ul><%= club.check_box + "  " +  club.text %></ul>
+      <% end %>
+    </td>
+    <td class="field">
+      <%= f.label :ratings %><br>
+      <%= collection_check_boxes(:jumper, :ratings, Rating.all, :id, :name) do |rating| %>
+        <ul><%= rating.check_box + "  " +  rating.text %></ul>
+      <% end %>
+    </td>
+  </tr>
+  <tr>
+    <td class="field">
+      <%= f.label :email %><br>
+      <%= f.text_field :email %>
+    </td>
+    <td class="field">
+      <%= f.label :verified %><br>
+      <%= check_box(:jumper, :verified) %>
+    </td>
+  </tr>
+  <tr>
+    <td class="field">
+      <p>Next of kin</p>
+      <%= f.text_area :nextofkin %>
+    </td>
+  </tr>
+  <tr>
+    <td class="actions">
+      <%= f.submit %>
+    </td>
+    </tr>
+  </table>
 <% end %>

@@ -25,7 +25,7 @@ class JumpersController < ApplicationController
   # POST /jumpers.json
   def create
     @jumper = Jumper.new(jumper_params)
-
+    binding.pry
     respond_to do |format|
       if @jumper.save
         format.html { redirect_to @jumper, notice: 'Jumper was successfully created.' }
@@ -69,6 +69,6 @@ class JumpersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def jumper_params
-      params.require(:jumper).permit(:name, :license, :rating, :description, :club, :phone, :email, :verified, :nextofkin, :license, :licensenumber)
+      params.require(:jumper).permit(:name, :license, :rating, :description, :phone, :email, :verified, :nextofkin, :license, :licensenumber, :ratings, clubs: [:id])
     end
 end
