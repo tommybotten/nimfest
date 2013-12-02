@@ -25,7 +25,7 @@ class JumpersController < ApplicationController
   # POST /jumpers.json
   def create
     @jumper = Jumper.new(jumper_params)
-    binding.pry
+ #   binding.pry
     respond_to do |format|
       if @jumper.save
         format.html { redirect_to @jumper, notice: 'Jumper was successfully created.' }

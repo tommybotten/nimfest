@@ -13,7 +13,7 @@
 
   <div class="field">
     <%= f.label :aircraft %><br>
-    <%= f.collection_select :aircraft, Aircraft.order(:name),:id,:name, include_blank: true %>
+    <%= f.collection_select :aircraft_id, Aircraft.order(:name),:id,:name, include_blank: false %>
   </div>
 
   <div class="field">
