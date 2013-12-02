@@ -18,7 +18,8 @@
     </td>
     <td class="field">
       <%= f.label :license %><br>
-      <%= select_tag "license", options_for_select(Jumper.licenses) %>
+      <% #select_tag "license", options_for_select(Jumper.licenses) %>
+      <%= f.collection_select :license, Jumper.order(:license),:id,:license, include_blank: false %>
     </td>
   </tr>
   <tr>
