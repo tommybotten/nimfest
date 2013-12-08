@@ -37,9 +37,24 @@
    Load.create(pilot: 'Martin Stene', flighttime: '35', location: 'Rakkestad', loadfortheday: '2', departure_timestamp: Time.now, aircraft: Aircraft.first, created_at: Time.now - 2.days)
    Load.create(pilot: 'Martin Stene', flighttime: '34', location: 'Rakkestad', loadfortheday: '3', departure_timestamp: Time.now, aircraft: Aircraft.first, created_at: Time.now - 1.days)
 
+  Price.delete_all
+	Price.create(height: '2500', price: '130')
+	Price.create(height: '3500', price: '150')
+	Price.create(height: '4000', price: '160')
+	Price.create(height: '5000', price: '170')
+	Price.create(height: '6000', price: '180')
+	Price.create(height: '7000', price: '190')
+	Price.create(height: '8000', price: '210')
+	Price.create(height: '9000', price: '230')
+	Price.create(height: '10000', price: '250')
+
   Slot.delete_all
-  Slot.create(height: '6000', jumptype: 'Tren', :load => Load.first, :jumper => Jumper.first)
-  Slot.create(height: '6000', jumptype: 'Tren', :load => Load.first, :jumper => Jumper.last)
-  Slot.create(height: '8000', jumptype: 'Tren', :load => Load.last, :jumper => Jumper.last)
+#  Slot.create(height: '6000', jumptype: 'Tren', :load => Load.first, :jumper => Jumper.first, price => Price.find(:first))
+#  Slot.create(height: '6000', jumptype: 'Tren', :load => Load.first, :jumper => Jumper.first, price => Price.find(:all, :conditions => ["height = 4000"]))
+#  Slot.create(height: '6000', jumptype: 'Tren', :load => Load.first, :jumper => Jumper.last, :price => Price.first[:price])
+  Slot.create(height: '6000', jumptype: 'Tren', :load => Load.first, :jumper => Jumper.first, price: '230')
+  Slot.create(height: '6000', jumptype: 'Tren', :load => Load.first, :jumper => Jumper.first, price: '230')
+  Slot.create(height: '8000', jumptype: 'Tren', :load => Load.last, :jumper => Jumper.last, price: '230')
+
 
    puts "Success: Test data loaded"
