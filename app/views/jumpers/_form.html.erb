@@ -18,7 +18,7 @@
     </td>
     <td class="field">
       <%= f.label :license %><br>
-      <%= select_tag "license", options_for_select(Jumper.licenses) %>
+      <%= f.select :license, Jumper.licenses %>
     </td>
   </tr>
   <tr>
@@ -40,9 +40,7 @@
     </td>
     <td class="field">
       <%= f.label :ratings %><br>
-      <%= collection_check_boxes(:jumper, :ratings, Rating.all, :id, :name) do |rating| %>
-        <ul><%= rating.check_box + "  " +  rating.text %></ul>
-      <% end %>
+      <%= f.collection_check_boxes :ratings, Rating.all,:id,:name,:checked=>['151','152'] %>
     </td>
   </tr>
   <tr>
