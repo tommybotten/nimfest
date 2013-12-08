@@ -34,13 +34,11 @@
   <tr>
     <td class="field">
       <%= f.label :clubs %><br>
-      <%= collection_check_boxes(:jumper, :clubs, Club.all, :id, :name) do |club| %>
-        <ul><%= club.check_box + "  " +  club.text %></ul>
-      <% end %>
+      <%= f.collection_check_boxes :club_ids, Club.all,:id,:name %>
     </td>
     <td class="field">
       <%= f.label :ratings %><br>
-      <%= f.collection_check_boxes :ratings, Rating.all,:id,:name,:checked=>['151','152'] %>
+      <%= f.collection_check_boxes :rating_ids, Rating.all,:id,:name,:checked=>['151','152'] %>
     </td>
   </tr>
   <tr>
