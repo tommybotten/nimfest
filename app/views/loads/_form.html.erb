@@ -13,16 +13,16 @@
 
   <div class="field">
     <%= f.label :aircraft %><br>
-    <%= f.collection_select :aircraft_id, Aircraft.order(:name),:id,:name, {:selected => @prev_aircraft }  %>
+    <%= f.collection_select :aircraft_id, Aircraft.order(:name),:id,:name %>
   </div>
 
   <div class="field">
     <%= f.label :pilot %><br>
-    <%= f.text_field :pilot, :value => @prev_pilot %>
+    <%= f.text_field :pilot %>
   </div>
   <div class="field">
     <%= f.label :location %><br>
-    <%= f.text_field :location, :value => @prev_location %>
+    <%= f.text_field :location %>
   </div>
   <div class="field">
     <%= f.label :departure_timestamp %><br>

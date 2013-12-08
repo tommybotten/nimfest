@@ -15,15 +15,20 @@ class LoadsController < ApplicationController
   # GET /loads/new
   def new
     @load = Load.new
-		@prev_pilot = Load.last.pilot if Load.last
-		@prev_location = Load.last.location if Load.last
-		@prev_aircraft = Load.last.aircraft if Load.last
+		@load.pilot ||= Load.last.pilot
+		@load.location ||= Load.last.location
+		@load.aircraft ||= Load.last.aircraft
   end
 
   # GET /loads/1/edit
   def edit
   end
 
+	def manifest
+		
+
+
+	end
   # POST /loads
   # POST /loads.json
   def create

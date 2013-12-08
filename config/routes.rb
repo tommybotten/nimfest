@@ -1,18 +1,11 @@
 Migrationtest::Application.routes.draw do
   resources :loads
-
   resources :slots
-
   resources :aircrafts
-
   resources :prices
-
   resources :jumpers
-
   resources :clubs
-
   resources :ratings
-  resources :manifests
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
