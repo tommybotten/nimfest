@@ -49,12 +49,13 @@
 	Price.create(height: '10000', price: '250')
 
   Slot.delete_all
-#  Slot.create(height: '6000', jumptype: 'Tren', :load => Load.first, :jumper => Jumper.first, price => Price.find(:first))
-#  Slot.create(height: '6000', jumptype: 'Tren', :load => Load.first, :jumper => Jumper.first, price => Price.find(:all, :conditions => ["height = 4000"]))
-#  Slot.create(height: '6000', jumptype: 'Tren', :load => Load.first, :jumper => Jumper.last, :price => Price.first[:price])
-  Slot.create(height: '6000', jumptype: 'Tren', :load => Load.first, :jumper => Jumper.first, price: '230')
-  Slot.create(height: '6000', jumptype: 'Tren', :load => Load.first, :jumper => Jumper.first, price: '230')
-  Slot.create(height: '8000', jumptype: 'Tren', :load => Load.last, :jumper => Jumper.last, price: '230')
+  Slot.create(height: '4000', jumptype: 'Tren', :load => Load.first, :jumper => Jumper.first, :price => Price.where(["height = 4000",]).first[:price])
+  Slot.create(height: '4000', jumptype: 'Tren', :load => Load.first, :jumper => Jumper.first, :price => Price.where(["height = 4000",]).first[:price])
+  Slot.create(height: '10000', jumptype: 'Tren', :load => Load.first, :jumper => Jumper.last, :price => Price.where(["height = 10000",]).first[:price])
+  Slot.create(height: '10000', jumptype: 'Tren', :load => Load.first, :jumper => Jumper.last, :price => Price.where(["height = 10000",]).first[:price])
+  Slot.create(height: '10000', jumptype: 'Tren', :load => Load.first, :jumper => Jumper.last, :price => Price.where(["height = 10000",]).first[:price])
+  Slot.create(height: '5000', jumptype: 'Tren', :load => Load.last, :jumper => Jumper.first, :price => Price.where(["height = 5000",]).first[:price])
+  Slot.create(height: '5000', jumptype: 'Tren', :load => Load.last, :jumper => Jumper.last, :price => Price.where(["height = 5000",]).first[:price])
 
 
    puts "Success: Test data loaded"
