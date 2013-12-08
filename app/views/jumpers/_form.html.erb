@@ -38,7 +38,7 @@
     </td>
     <td class="field">
       <%= f.label :ratings %><br>
-      <%= f.collection_check_boxes :rating_ids, Rating.all,:id,:name,:checked=>['151','152'] %>
+      <%= f.collection_check_boxes :rating_ids, Rating.all,:id,:name %>
     </td>
   </tr>
   <tr>
