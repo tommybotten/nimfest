@@ -15,6 +15,9 @@ class LoadsController < ApplicationController
   # GET /loads/new
   def new
     @load = Load.new
+		@prev_pilot = Load.last.pilot if Load.last
+		@prev_location = Load.last.location if Load.last
+		@prev_aircraft = Load.last.aircraft if Load.last
   end
 
   # GET /loads/1/edit
