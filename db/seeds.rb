@@ -33,8 +33,9 @@
 		:ratings => Rating.where(:name => ['I-3','Demo-2']))
 
    Load.delete_all
-   Load.create(pilot: 'Martin Stene', flighttime: '35', location: 'Rakkestad', loadfortheday: '2', departure_timestamp: Time.now, aircraft: Aircraft.first)
-   Load.create(pilot: 'Martin Stene', flighttime: '34', location: 'Rakkestad', loadfortheday: '3', departure_timestamp: Time.now, aircraft: Aircraft.first)
+   Load.create(pilot: 'Martin Stene', flighttime: '35', location: 'Rakkestad', loadfortheday: '1', departure_timestamp: Time.now, aircraft: Aircraft.first, created_at: Time.now - 2.days)
+   Load.create(pilot: 'Martin Stene', flighttime: '35', location: 'Rakkestad', loadfortheday: '2', departure_timestamp: Time.now, aircraft: Aircraft.first, created_at: Time.now - 2.days)
+   Load.create(pilot: 'Martin Stene', flighttime: '34', location: 'Rakkestad', loadfortheday: '3', departure_timestamp: Time.now, aircraft: Aircraft.first, created_at: Time.now - 1.days)
 
   Slot.delete_all
   Slot.create(height: '6000', jumptype: 'Tren', :load => Load.first, :jumper => Jumper.first)
