@@ -6,8 +6,7 @@ class Jumper < ActiveRecord::Base
 
 
   class << self
-    # FIXME: Placeholder for viewing the loads that are currently active.
-    # This means: Todays loads that does not have the status "landed"
+		# Available licenses
     def licenses
       return ["E","A","B","C","D"]
     end

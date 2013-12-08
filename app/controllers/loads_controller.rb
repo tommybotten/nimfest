@@ -4,7 +4,7 @@ class LoadsController < ApplicationController
   # GET /loads
   # GET /loads.json
   def index
-    @loads = Load.all
+    @loads = Load.order(created_at: :desc)
   end
 
   # GET /loads/1
@@ -22,6 +22,7 @@ class LoadsController < ApplicationController
 
   # GET /loads/1/edit
   def edit
+		@slot = Slot.new
   end
 
 	def manifest

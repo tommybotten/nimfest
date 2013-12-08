@@ -11,28 +11,33 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :aircraft %><br>
-    <%= f.collection_select :aircraft_id, Aircraft.order(:name),:id,:name %>
-  </div>
+<table class="table table-bordered">
+	<tr>
+	  <td>
+	    <%= f.label :aircraft %><br>
+	    <%= f.collection_select :aircraft_id, Aircraft.order(:name),:id,:name %>
+	  </td>
+	  <td class="field">
+	    <%= f.label :pilot %><br>
+	    <%= f.text_field :pilot %>
+	  </td>
+	  <td class="field" width="50">
+	    <%= f.label :location %><br>
+	    <%= f.text_field :location %>
+	  </td>
+	  <td class="field">
+	    <%= f.label :departure_timestamp %><br>
+	    <%= f.text_field :departure_timestamp %>
+	  </td>
+	  <td class="field">
+	    <%= f.label :flighttime %><br>
+	    <%= f.text_field :flighttime %>
+	  </td>
+	</tr>
+	  <div class="actions">
+			<%= render 'slots' %>
+	    <%= f.submit %>
+	  </div>
+</table>
 
-  <div class="field">
-    <%= f.label :pilot %><br>
-    <%= f.text_field :pilot %>
-  </div>
-  <div class="field">
-    <%= f.label :location %><br>
-    <%= f.text_field :location %>
-  </div>
-  <div class="field">
-    <%= f.label :departure_timestamp %><br>
-    <%= f.text_field :departure_timestamp %>
-  </div>
-  <div class="field">
-    <%= f.label :flighttime %><br>
-    <%= f.text_field :flighttime %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
 <% end %>
