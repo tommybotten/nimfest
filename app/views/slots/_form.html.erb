@@ -27,10 +27,10 @@
     <%= f.label :approved %><br>
     <%= f.check_box :approved %>
   </div>
-  <div class="field">
-    <%= f.label :jumptype %><br>
-    <%= f.text_field :jumptype %>
-  </div>
+    <td class="field">
+      <%= f.label :jumptype %><br>
+      <%= f.select :jumptype , Slot.jumptypes %>
+    </td>
   <div class="field">
     <%= f.label :jumpmaster %><br>
     <%= f.check_box :jumpmaster %>
