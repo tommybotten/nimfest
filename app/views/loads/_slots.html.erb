@@ -5,11 +5,11 @@
 		<th>Type</th>
 		<th>Price</th>
 	</tr>
-<% (1..5).each do |slots| -%>
-	<%= form_for(@slot) do |f| %>
-	  <% if @slot.errors.any? %>
+<% @slots.each do |slots| -%>
+	<%= form_for(slots) do |f| %>
+	  <% if slots.errors.any? %>
 	    <div id="error_explanation">
-	      <h2><%= pluralize(@slot.errors.count, "error") %> prohibited this slot from being saved:</h2>
+	      <h2><%= pluralize(slots.errors.count, "error") %> prohibited this slot from being saved:</h2>
 	
 	      <ul>
 	      <% @slot.errors.full_messages.each do |msg| %>
@@ -19,10 +19,10 @@
 	    </div>
 	  <% end %>
 		<tr>
-		  <td class="field">
-		    <%= f.text_field :jumper %>
+      <td class="field">
+		    <%= f.text_field :jumper, value: slots.jumper.name %>
 		  </td>
-		  <td class="field">
+      <td class="field">
 	    	<%= f.collection_select :height, Price.order(:height),:id,:height %>
 		  </td>
 		  <td class="field">

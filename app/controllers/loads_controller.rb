@@ -22,14 +22,9 @@ class LoadsController < ApplicationController
 
   # GET /loads/1/edit
   def edit
-		@slot = Slot.new
+    @slots = @load.slots
   end
 
-	def manifest
-		
-
-
-	end
   # POST /loads
   # POST /loads.json
   def create
