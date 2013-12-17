@@ -31,11 +31,30 @@
 		nextofkin: 'Lorem Ipsum Dolor sit amet',
 		:clubs => Club.where(:name => ['Nimbus FSK','Oslo FSK']),
 		:ratings => Rating.where(:name => ['I-3','Demo-2']))
+   Jumper.create(name: 'Skygod Hansen', license: 'D', description: '',
+		phone: '48012441', email: 'test@example.org', verified: 'true',
+		nextofkin: 'Lorem Ipsum Dolor sit amet',
+		:clubs => Club.where(:name => ['Oslo FSK']),
+		:ratings => Rating.where(:name => ['I-1','Demo-1']))
+   Jumper.create(name: 'Line Elev', license: 'E', description: '',
+		phone: '48012441', email: 'test@example.com', verified: 'true',
+		nextofkin: 'Lorem Ipsum Dolor sit amet',
+		:clubs => Club.where(:name => ['Nimbus FSK']))
+   Jumper.create(name: 'A Line', license: 'E', description: '',
+		phone: '48012441', email: 'somewhere@example.org', verified: 'true',
+		nextofkin: 'Lorem Ipsum Dolor sit amet',
+		:clubs => Club.where(:name => ['Nimbus FSK']))
+   Jumper.create(name: 'Lars Kristian Bjerk', license: 'C', description: '',
+		phone: '48012441', email: 'somewhere@example.org', verified: 'true',
+		nextofkin: 'Lorem Ipsum Dolor sit amet',
+		:clubs => Club.where(:name => ['Nimbus FSK']))
+   Jumper.create(name: 'Martin Engum', license: 'C', description: '',
+		phone: '48012441', email: 'somewhere@example.org', verified: 'true',
+		nextofkin: 'Lorem Ipsum Dolor sit amet',
+		:clubs => Club.where(:name => ['Nimbus FSK']))
 
    Load.delete_all
-   Load.create(pilot: 'Martin Stene', flighttime: '35', location: 'Rakkestad', loadfortheday: '1', departure_timestamp: Time.now, aircraft: Aircraft.first, created_at: Time.now - 2.days)
-   Load.create(pilot: 'Martin Stene', flighttime: '35', location: 'Rakkestad', loadfortheday: '2', departure_timestamp: Time.now, aircraft: Aircraft.first, created_at: Time.now - 2.days)
-   Load.create(pilot: 'Martin Stene', flighttime: '34', location: 'Rakkestad', loadfortheday: '3', departure_timestamp: Time.now, aircraft: Aircraft.first, created_at: Time.now - 1.days)
+   Load.create(pilot: 'Martin Stene', flighttime: '35', location: 'Rakkestad', loadfortheday: '1', departure_timestamp: Time.now, aircraft: Aircraft.first, created_at: Time.now)
 
   Price.delete_all
 	Price.create(height: '2500', price: '130')
@@ -49,13 +68,11 @@
 	Price.create(height: '10000', price: '250')
 
   Slot.delete_all
-  Slot.create(height: '4000', jumptype: 'Tren', :load => Load.first, :jumper => Jumper.first, :price => Price.where(["height = 4000",]).first[:price])
-  Slot.create(height: '4000', jumptype: 'Tren', :load => Load.first, :jumper => Jumper.first, :price => Price.where(["height = 4000",]).first[:price])
-  Slot.create(height: '10000', jumptype: 'Tren', :load => Load.first, :jumper => Jumper.last, :price => Price.where(["height = 10000",]).first[:price])
-  Slot.create(height: '10000', jumptype: 'Tren', :load => Load.first, :jumper => Jumper.last, :price => Price.where(["height = 10000",]).first[:price])
-  Slot.create(height: '10000', jumptype: 'Tren', :load => Load.first, :jumper => Jumper.last, :price => Price.where(["height = 10000",]).first[:price])
-  Slot.create(height: '5000', jumptype: 'Tren', :load => Load.last, :jumper => Jumper.first, :price => Price.where(["height = 5000",]).first[:price])
-  Slot.create(height: '5000', jumptype: 'Tren', :load => Load.last, :jumper => Jumper.last, :price => Price.where(["height = 5000",]).first[:price])
-
+  @jumpers = Jumper.all
+  Slot.create(height: '10000', jumptype: 'Tren', :load => Load.first, :jumper => @jumpers[0], price: '250')
+  Slot.create(height: '10000', jumptype: 'Tren', :load => Load.first, :jumper => @jumpers[1], jumpmaster: 'true', price: '200')
+  Slot.create(height: '10000', jumptype: 'Tren', :load => Load.first, :jumper => @jumpers[2], price: '250')
+  Slot.create(height: '6000', jumptype: 'FF-15', :load => Load.first, :jumper => @jumpers[3], price: '275')
+  Slot.create(height: '3500', jumptype: 'UL-T', :load => Load.first, :jumper => @jumpers[4], price: '275')
 
    puts "Success: Test data loaded"
