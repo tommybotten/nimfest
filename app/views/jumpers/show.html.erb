@@ -52,7 +52,7 @@
 
 <p>
   <strong>Total number of jumps logged here:</strong>
-  Placeholder. Define model for this.
+  <%= @jumper.slots.size %>
 </p>
 
 <p>
@@ -62,6 +62,7 @@
 
 <p>Additional outstanding: Jumplog, statistics, calendar.</p>
 
+<h3>Outstanding payment: <%= @jumper.outstanding_amount %></h3>
 
 <%= link_to 'Edit', edit_jumper_path(@jumper) %> |
 <%= link_to 'Back', jumpers_path %>
