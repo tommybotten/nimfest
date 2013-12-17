@@ -25,9 +25,21 @@
 	    <%= f.label :location %><br>
 	    <%= f.text_field :location %>
 	  </td>
-	  <td class="field">
+    <td class="field">
 	    <%= f.label :departure_timestamp %><br>
-	    <%= f.text_field :departure_timestamp %>
+      <div id="datetimepicker1" class="input-append date">
+        <%= f.text_field :departure_timestamp, options = { "data-format" => "yyyy-MM-dd hh:mm:ss"} %>2013-12-17 20:23:40 UTC
+        <span class="add-on">
+          <i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
+        </span>
+      </div>
+    <script type="text/javascript">
+  $(function() {
+          $('#datetimepicker1').datetimepicker({
+                  language: 'pt-BR'
+                      });
+            });
+    </script>
 	  </td>
 	  <td class="field">
 	    <%= f.label :flighttime %><br>
@@ -37,6 +49,5 @@
 	  <div class="actions">
 	    <%= f.submit %>
 	  </div>
-</table>
-
+  </table>
 <% end %>
