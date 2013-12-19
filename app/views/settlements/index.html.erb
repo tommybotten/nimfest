@@ -1,0 +1,50 @@
+
+
+<h1>Placeholder for:</h1>
+<h3>Outstanding payments</h3>
+<% @outstanding_payments.each do |not_paid| %>
+  <p><%= not_paid.jumper.name + " - " +  not_paid.price.to_s %></p>
+<% end %>
+<strong>Total: <%= @total_outstanding %> </strong>
+
+
+<h3>Todays loads and economy</h3>
+<table class="table table-bordered">
+  <tr>
+    <th>Load number</th>
+    <th>Flight time</th>
+    <th>Load cost</th>
+    <th>Paid by jumpers</th>
+    <th>Total</th>
+  </tr>
+
+  <% @loads.each do |load| %>
+    <tr>
+      <td><%= load.loadfortheday %></td>
+      <td><%= load.flighttime %></td>
+      <td><%= load.cost %></td>
+      <td><%= load.paid %></td>
+      <td><%= load.paid - load.cost %></td>
+    </tr>
+<% end %>
+    <tr>
+      <th>Total:</th>
+      <th>counter_cache</th>
+      <th>counter_cache</th>
+      <th>counter_cache</th>
+      <th>counter_cache</th>
+    </tr>
+</table>
+
+<h3>Statistics</h3>
+<strong>Frequent flyer top 10</strong>
+<table class="table table-bordered">
+  <tr>
+    <th>Name</th>
+    <th>Total number of jumps</th>
+    <th>Jumps last year</th>
+  </tr>
+
+</table>
+
+
