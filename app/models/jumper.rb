@@ -22,6 +22,13 @@ class Jumper < ActiveRecord::Base
     def licenses
       return ["E","A","B","C","D"]
     end
+ 
+#    def frequent_flyer
+#      self.
+#
+#
+#
+#    end
   end
 
 end

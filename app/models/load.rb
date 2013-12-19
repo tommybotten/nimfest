@@ -22,6 +22,17 @@ class Load < ActiveRecord::Base
 		# self.loadfortheday = loadnumber
 	end
 
+  def paid
+    paid = 0
+    self.slots.each do |slot|
+      paid = paid + slot.price
+    end
+    return paid
+  end
+
+  def cost
+    self.aircraft.price / 60 * self.flighttime
+  end
 
   class << self
     # FIXME: Placeholder for viewing the loads that are currently active.

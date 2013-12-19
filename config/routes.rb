@@ -6,6 +6,7 @@ Migrationtest::Application.routes.draw do
   resources :jumpers
   resources :clubs
   resources :ratings
+  resources :settlements
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
