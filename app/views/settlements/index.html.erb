@@ -30,7 +30,7 @@
       <td><%= load.paid %></td> <% tot_paid += load.paid %>
       <td><%= load.paid - load.cost %></td> <% tot_result += load.paid - load.cost %>
     </tr>
-<% end %>
+	<% end %>
     <tr>
       <th>Total:</th>
       <th><%=tot_flighttime%></th>
@@ -48,6 +48,12 @@
     <th>Total number of jumps</th>
     <th>Jumps last year</th>
   </tr>
+  <% @slots.each do |slot| %>
+    <tr>
+      <td><%= @jumpers.where(id: slot.jumper_id).first.name %></td>
+      <td><%= slot.count %></td>
+    </tr>
+	<% end %>
 
 </table>
 
