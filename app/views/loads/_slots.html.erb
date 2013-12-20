@@ -6,7 +6,7 @@
 		<th>Price</th>
 	</tr>
 <% @slots.each do |slots| -%>
-	<%= form_for(slots) do |f| %>
+	<%= form_for(slots, remote: true) do |f| %>
 	  <% if slots.errors.any? %>
 	    <div id="error_explanation">
 	      <h2><%= pluralize(slots.errors.count, "error") %> prohibited this slot from being saved:</h2>
@@ -30,6 +30,9 @@
 		  </td>
 		  <td class="field">
 		    <%= f.text_field :price %>
+		  </td>
+		  <td class="actions">
+		    <%= f.submit 'Update'%>
 		  </td>
 		</tr>
 	<% end %>
