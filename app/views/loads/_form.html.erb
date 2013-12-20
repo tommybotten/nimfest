@@ -41,9 +41,23 @@
             });
     </script>
 	  </td>
+	</tr>
+	</tr>
+	  <td class="field">
+	    <%= (f.label :hl) %><br>
+			Placeholder
+	  </td>
 	  <td class="field">
 	    <%= f.label :flighttime %><br>
 	    <%= f.text_field :flighttime %>
+	  </td>
+	  <td class="field">
+	    <%= f.label :hfl %><br>
+	    <%= f.text_field :hfl %>
+	  </td>
+	  <td class="field">
+	    <%= f.label :state%><br>
+	    <%= f.select :state, Load.states %>
 	  </td>
 	</tr>
 	  <div class="actions">

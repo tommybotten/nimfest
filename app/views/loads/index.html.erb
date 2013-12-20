@@ -1,11 +1,17 @@
 <div>
   <% @loads.each do |load| %>
     <h2><%= link_to "Load " + load.loadfortheday.to_s , edit_load_path(load) %> <%= load.departure_timestamp.strftime("%H:%M") if load.departure_timestamp? %></h2>
-    <p><b>Pilot <%= load.pilot %> / Aircraft <%= load.aircraft.name %> / Dropzone: <%= load.location %></b></p>
     <table class="table table-bordered">
       <thead>
         <tr class="error">
-          <th>Jumper</th>
+          <th>Pilot: <%= load.pilot %></th>
+          <th>Aircraft: <%= load.aircraft.name %></th>
+          <th>DropZone: <%= load.location %></th>
+          <th>HFL: <%= load.hfl %></th>
+          <th>HL: Placeholder</th>
+        </tr>
+        <tr class="error">
+          <th>Skydiver</th>
           <th>License</th>
           <th>Altitude</th>
           <th>Jumptype</th>
