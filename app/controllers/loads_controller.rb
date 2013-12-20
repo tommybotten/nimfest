@@ -18,6 +18,7 @@ class LoadsController < ApplicationController
 		@load.pilot ||= Load.last.pilot
 		@load.location ||= Load.last.location
 		@load.aircraft ||= Load.last.aircraft
+		@slots = Slot.new
   end
 
   # GET /loads/1/edit
@@ -73,6 +74,6 @@ class LoadsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def load_params
-      params.require(:load).permit(:pilot, :flighttime, :location, :departure_timestamp, :aircraft_id)
+      params.require(:load).permit(:pilot, :flighttime, :location, :departure_timestamp, :aircraft_id, :hfl, :state)
     end
 end

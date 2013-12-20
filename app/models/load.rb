@@ -29,6 +29,11 @@ class Load < ActiveRecord::Base
     def active_loads
       Load.all
     end
+
+		def states
+			return ["Manifesting","In the air","Landed"]
+		end
+
   end
 
 end
