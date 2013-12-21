@@ -4,6 +4,7 @@
 		<th>Height</th>
 		<th>Type</th>
 		<th>Price</th>
+		<th>Submit</th>
 	</tr>
 <% @slots.each do |slots| -%>
 	<%= form_for(slots, remote: true) do |f| %>
@@ -23,6 +24,39 @@
 		    <%= f.text_field :jumper, value: slots.jumper.name %>
 		  </td>
       <td class="field">
+	    	<%= f.collection_select :height, Price.order(:height),:id,:height %>
+		  </td>
+		  <td class="field">
+	      <%= f.select :jumptype , Slot.jumptypes %>
+		  </td>
+		  <td class="field">
+		    <%= f.text_field :price %>
+		  </td>
+		  <td class="actions">
+		    <%= f.submit 'Update'%>
+		  </td>
+		</tr>
+	<% end %>
+<% end %>
+
+<% if @aircraft.capacity > @slots.count%>
+	<%= form_for(@slot, remote: true) do |f| %>
+	  <% if @slot.errors.any? %>
+	    <div id="error_explanation">
+	      <h2><%= pluralize(@slot.errors.count, "error") %> prohibited this slot from being saved:</h2>
+	
+	      <ul>
+	      <% @slot.errors.full_messages.each do |msg| %>
+	        <li><%= msg %></li>
+	      <% end %>
+	      </ul>
+	    </div>
+	  <% end %>
+		<tr>
+	    <td class="field">
+		    <%= f.text_field :jumper %>
+		  </td>
+	    <td class="field">
 	    	<%= f.collection_select :height, Price.order(:height),:id,:height %>
 		  </td>
 		  <td class="field">
