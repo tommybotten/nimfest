@@ -23,6 +23,8 @@ class LoadsController < ApplicationController
   # GET /loads/1/edit
   def edit
     @slots = @load.slots
+		@slot = Slot.new
+		@aircraft = @load.aircraft
   end
 
   # POST /loads

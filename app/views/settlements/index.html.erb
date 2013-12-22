@@ -18,21 +18,25 @@
     <th>Total</th>
   </tr>
 
+	<%tot_flighttime = 0%>
+	<%tot_load_cost = 0%>
+	<%tot_paid = 0%>
+	<%tot_result = 0%>
   <% @loads.each do |load| %>
     <tr>
       <td><%= load.loadfortheday %></td>
-      <td><%= load.flighttime %></td>
-      <td><%= load.cost %></td>
-      <td><%= load.paid %></td>
-      <td><%= load.paid - load.cost %></td>
+			<td><%= load.flighttime %></td> <% tot_flighttime += load.flighttime %>
+      <td><%= load.cost %></td> <% tot_load_cost += load.cost %>
+      <td><%= load.paid %></td> <% tot_paid += load.paid %>
+      <td><%= load.paid - load.cost %></td> <% tot_result += load.paid - load.cost %>
     </tr>
-<% end %>
+	<% end %>
     <tr>
       <th>Total:</th>
-      <th>counter_cache</th>
-      <th>counter_cache</th>
-      <th>counter_cache</th>
-      <th>counter_cache</th>
+      <th><%=tot_flighttime%></th>
+      <th><%=tot_load_cost%></th>
+      <th><%=tot_paid%></th>
+      <th><%=tot_result%></th>
     </tr>
 </table>
 
@@ -44,6 +48,12 @@
     <th>Total number of jumps</th>
     <th>Jumps last year</th>
   </tr>
+  <% @slots.each do |slot| %>
+    <tr>
+      <td><%= @jumpers.where(id: slot.jumper_id).first.name %></td>
+      <td><%= slot.count %></td>
+    </tr>
+	<% end %>
 
 </table>
 
