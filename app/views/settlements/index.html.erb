@@ -1,0 +1,60 @@
+
+
+<h1>Placeholder for:</h1>
+<h3>Outstanding payments</h3>
+<% @outstanding_payments.each do |not_paid| %>
+  <p><%= not_paid.jumper.name + " - " +  not_paid.price.to_s %></p>
+<% end %>
+<strong>Total: <%= @total_outstanding %> </strong>
+
+
+<h3>Todays loads and economy</h3>
+<table class="table table-bordered">
+  <tr>
+    <th>Load number</th>
+    <th>Flight time</th>
+    <th>Load cost</th>
+    <th>Paid by jumpers</th>
+    <th>Total</th>
+  </tr>
+
+	<%tot_flighttime = 0%>
+	<%tot_load_cost = 0%>
+	<%tot_paid = 0%>
+	<%tot_result = 0%>
+  <% @loads.each do |load| %>
+    <tr>
+      <td><%= load.loadfortheday %></td>
+			<td><%= load.flighttime %></td> <% tot_flighttime += load.flighttime %>
+      <td><%= load.cost %></td> <% tot_load_cost += load.cost %>
+      <td><%= load.paid %></td> <% tot_paid += load.paid %>
+      <td><%= load.paid - load.cost %></td> <% tot_result += load.paid - load.cost %>
+    </tr>
+	<% end %>
+    <tr>
+      <th>Total:</th>
+      <th><%=tot_flighttime%></th>
+      <th><%=tot_load_cost%></th>
+      <th><%=tot_paid%></th>
+      <th><%=tot_result%></th>
+    </tr>
+</table>
+
+<h3>Statistics</h3>
+<strong>Frequent flyer top 10</strong>
+<table class="table table-bordered">
+  <tr>
+    <th>Name</th>
+    <th>Total number of jumps</th>
+    <th>Jumps last year</th>
+  </tr>
+  <% @slots.each do |slot| %>
+    <tr>
+      <td><%= @jumpers.where(id: slot.jumper_id).first.name %></td>
+      <td><%= slot.count %></td>
+    </tr>
+	<% end %>
+
+</table>
+
+
