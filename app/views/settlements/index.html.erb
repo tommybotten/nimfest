@@ -1,12 +1,21 @@
-
-
-<h1>Placeholder for:</h1>
+<h1>Settlements and statistics</h1>
 <h3>Outstanding payments</h3>
-<% @outstanding_payments.each do |not_paid| %>
-  <p><%= not_paid.jumper.name + " - " +  not_paid.price.to_s %></p>
+<table class="table table-bordered">
+	<tr class="thead">
+		<th>Name</th>
+		<th>Amount</th>
+	</tr>
+<% @jumpers.each do |jumper| %>
+	<% if jumper.outstanding_amount != 0 %>
+	<tr>
+		<td><%= jumper.name %></td>
+		<td><%= jumper.outstanding_amount %></td>
+	</tr>
+	<% end %>
 <% end %>
-<strong>Total: <%= @total_outstanding %> </strong>
+</table>
 
+<strong>Total: <%= @total_outstanding %> </strong>
 
 <h3>Todays loads and economy</h3>
 <table class="table table-bordered">
@@ -52,9 +61,7 @@
     <tr>
       <td><%= @jumpers.where(id: slot.jumper_id).first.name %></td>
       <td><%= slot.count %></td>
+      <td>Placeholder</td>
     </tr>
 	<% end %>
-
 </table>
-
-
