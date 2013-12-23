@@ -54,8 +54,9 @@
 		:clubs => Club.where(:name => ['Nimbus FSK']))
 
    Load.delete_all
-   Load.create(pilot: 'Martin Stene', flighttime: '25', location: 'Rakkestad', loadfortheday: '1', departure_timestamp: Time.now, aircraft: Aircraft.first, created_at: Time.now)
+   Load.create(pilot: 'Martin Stene', flighttime: '21', location: 'Rakkestad', loadfortheday: '1', departure_timestamp: Time.now - 60.minutes, aircraft: Aircraft.first, created_at: Time.now)
    Load.create(pilot: 'Martin Stene', flighttime: '19', location: 'Rakkestad', loadfortheday: '2', departure_timestamp: Time.now - 40.minutes, aircraft: Aircraft.first, created_at: Time.now)
+   Load.create(pilot: 'Martin Stene', flighttime: '25', location: 'Rakkestad', loadfortheday: '3', departure_timestamp: Time.now, aircraft: Aircraft.first, created_at: Time.now)
 
   Price.delete_all
 	Price.create(height: '2500', price: '130')
@@ -70,26 +71,24 @@
 
   Slot.delete_all
   @jumpers = Jumper.all
-  Slot.create(height: '10000', jumptype: 'Tren', :load => Load.first, :jumper => @jumpers[0], price: '250')
-  Slot.create(height: '10000', jumptype: 'Tren', :load => Load.first, :jumper => @jumpers[1], jumpmaster: 'true', price: '200')
-  Slot.create(height: '10000', jumptype: 'Tren', :load => Load.first, :jumper => @jumpers[2], price: '250')
-  Slot.create(height: '6000', jumptype: 'FF-15', :load => Load.first, :jumper => @jumpers[3], price: '275')
-  Slot.create(height: '3500', jumptype: 'UL-T', :load => Load.first, :jumper => @jumpers[4], price: '275')
+	@loads = Load.all
+  Slot.create(height: '10000', jumptype: 'Tren', :load => @loads[2], :jumper => @jumpers[0], price: '250')
+  Slot.create(height: '10000', jumptype: 'Tren', :load => @loads[2], :jumper => @jumpers[1], jumpmaster: 'true', price: '200')
+  Slot.create(height: '10000', jumptype: 'Tren', :load => @loads[2], :jumper => @jumpers[2], price: '250')
+  Slot.create(height: '6000', jumptype: 'FF-15', :load => @loads[2], :jumper => @jumpers[3], price: '275')
+  Slot.create(height: '3500', jumptype: 'UL-T', :load => 	@loads[2], :jumper => @jumpers[4], price: '275')
 
 
-  Slot.create(height: '6000', jumptype: 'Tren', :load => Load.last, :jumper => @jumpers[0], price: '180')
-  Slot.create(height: '6000', jumptype: 'Tren', :load => Load.last, :jumper => @jumpers[1], price: '180')
-  Slot.create(height: '6000', jumptype: 'Tren', :load => Load.last, :jumper => @jumpers[2], jumpmaster: 'true', price: '180')
-  Slot.create(height: '6000', jumptype: 'FF-15', :load => Load.last, :jumper => @jumpers[3], price: '275')
-  Slot.create(height: '3500', jumptype: 'UL-T', :load => Load.last, :jumper => @jumpers[4], price: '275')
+  Slot.create(height: '6000', jumptype: 'Tren', :load => @loads[1], :jumper => @jumpers[5], price: '180')
+  Slot.create(height: '6000', jumptype: 'Tren', :load => @loads[1], :jumper => @jumpers[1], price: '180')
+  Slot.create(height: '6000', jumptype: 'Tren', :load => @loads[1], :jumper => @jumpers[2], jumpmaster: 'true', price: '180')
+  Slot.create(height: '6000', jumptype: 'FF-15',:load => @loads[1], :jumper => @jumpers[3], price: '275')
+  Slot.create(height: '3500', jumptype: 'Tren', :load => @loads[1], :jumper => @jumpers[6], price: '150')
 
-
-
-
-
-
-
-
-
+  Slot.create(height: '3500', jumptype: 'Tren', :load => @loads[0], :jumper => @jumpers[5], price: '180')
+  Slot.create(height: '3500', jumptype: 'Tren', :load => @loads[0], :jumper => @jumpers[1], jumpmaster: 'true', price: '180')
+  Slot.create(height: '3500', jumptype: 'Tren', :load => @loads[0], :jumper => @jumpers[2], price: '180')
+  Slot.create(height: '3500', jumptype: 'Tren', :load => @loads[0], :jumper => @jumpers[0], price: '275')
+  Slot.create(height: '3500', jumptype: 'Tren', :load => @loads[0], :jumper => @jumpers[6], price: '150')
 
    puts "Success: Test data loaded"
