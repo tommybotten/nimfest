@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131220191703) do
+ActiveRecord::Schema.define(version: 20131223164859) do
 
   create_table "aircrafts", force: true do |t|
     t.string   "aircraft_type"
@@ -46,10 +46,13 @@ ActiveRecord::Schema.define(version: 20131220191703) do
     t.integer  "phone"
     t.string   "email"
     t.boolean  "verified"
-    t.text     "nextofkin"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "licensenumber"
+    t.string   "nextofkin_name"
+    t.string   "nextofkin_relation"
+    t.string   "nextofkin_address"
+    t.integer  "nextofkin_phone"
   end
 
   create_table "jumpers_ratings", id: false, force: true do |t|

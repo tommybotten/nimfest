@@ -69,6 +69,6 @@ class JumpersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def jumper_params
-      params.require(:jumper).permit(:name, :license, :description, :phone, :email, :verified, :nextofkin, :licensenumber, club_ids:[], rating_ids: [])
+      params.require(:jumper).permit(:name, :license, :description, :phone, :email, :verified,:nextofkin_address,:nextofkin_relation, :nextofkin_phone,:nextofkin_name, :licensenumber, club_ids:[], rating_ids: [])
     end
 end
