@@ -22,6 +22,9 @@ class Jumper < ActiveRecord::Base
     def licenses
       return ["E","A","B","C","D"]
     end
+		def kin_relation
+			return ["Father","Mother","Sibling","Spouse","Friend"]
+		end
  
 #    def frequent_flyer
 #      self.
