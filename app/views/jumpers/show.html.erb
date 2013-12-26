@@ -40,6 +40,7 @@
 <p>Additional outstanding: Jumplog, statistics, calendar.</p>
 
 <p>Outstanding payment: <%= @jumper.outstanding_amount %></p>
+<p>Jumpmastered loads: <%= @jumper.number_of_jumpmaster_loads %></p>
 
 <%= link_to 'Edit', edit_jumper_path(@jumper) %> |
 <%= link_to 'Back', jumpers_path %>

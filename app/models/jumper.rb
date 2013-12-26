@@ -16,6 +16,25 @@ class Jumper < ActiveRecord::Base
     return amount
   end
 
+	def number_of_jumpmaster_loads
+		self.slots.where(:jumpmaster => true).count
+	end
+
+	def number_of_hl_loads
+		# Placeholder
+		return 1
+	end
+
+	def number_of_hl_days
+		# Placeholder
+		return 1
+	end
+
+	def number_of_hfl_days
+		# Placeholder
+		return 1
+	end
+
  
   class << self
 		# Available licenses
