@@ -23,7 +23,7 @@
         <td><%= jumper.ratings.map(&:name).join(",") %></td>
         <td><%= jumper.clubs.map(&:name).join(",") %></td>
         <td><%= jumper.phone %></td>
-        <td><%= jumper.email %></td>
+  			<td><%= mail_to jumper.email %></td>
         <td><%= jumper.verified %></td>
         <td><%= jumper.licensenumber %></td>
         <td><%= link_to 'Delete', jumper, method: :delete, data: { confirm: 'Are you sure?' } %></td>
