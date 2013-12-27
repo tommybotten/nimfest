@@ -2,6 +2,7 @@ class Jumper < ActiveRecord::Base
   validates :email, :name, :license, :clubs, :phone, :nextofkin_name, :nextofkin_address, :nextofkin_phone, :nextofkin_relation, presence: true
   has_and_belongs_to_many :clubs
   has_and_belongs_to_many :ratings
+	has_one :load , as: :hl
   has_many :slots
 
   def outstanding_payments
