@@ -34,33 +34,33 @@
 		:clubs => Club.where(:name => ['Nimbus FSK','Oslo FSK']),
 		:ratings => Rating.where(:name => ['I-3']))
    Jumper.create(name: 'Skygod Hansen', license: 'D', description: '',
-		phone: '48012441', email: 'test@example.org', verified: 'true',
+		phone: '48012442', email: 'test@example.org', verified: 'true',
 		nextofkin_name: 'Generic kin', nextofkin_relation: 'Friend', 
 		nextofkin_address: 'Generic address', nextofkin_phone: '12346578',
 		licensenumber: '34',
 		:clubs => Club.where(:name => ['Oslo FSK']),
 		:ratings => Rating.where(:name => ['I-1','Demo-1']))
    Jumper.create(name: 'Line Elev', license: 'E', description: '',
-		phone: '48012441', email: 'test@example.com', verified: 'true',
+		phone: '48012436', email: 'test2@example.com', verified: 'true',
 		licensenumber: '119134',
 		nextofkin_name: 'Generic kin', nextofkin_relation: 'Friend', 
 		nextofkin_address: 'Generic address', nextofkin_phone: '12346578',
 		:clubs => Club.where(:name => ['Nimbus FSK']))
    Jumper.create(name: 'A Line', license: 'E', description: '',
-		phone: '48012441', email: 'somewhere@example.org', verified: 'true',
+		phone: '48312441', email: 'soimewhere@example.org', verified: 'true',
 		licensenumber: '119131',
 		nextofkin_name: 'Generic kin', nextofkin_relation: 'Friend', 
 		nextofkin_address: 'Generic address', nextofkin_phone: '12346578',
 		:clubs => Club.where(:name => ['Nimbus FSK']))
    Jumper.create(name: 'Lars Kristian Bjerk', license: 'C', description: '',
-		phone: '48012441', email: 'somewhere@example.org', verified: 'true',
+		phone: '48012443', email: '2somewhere@example.org', verified: 'true',
 		nextofkin_name: 'Generic kin', nextofkin_relation: 'Friend', 
 		nextofkin_address: 'Generic address', nextofkin_phone: '12346578',
 		licensenumber: '89234',
 		:ratings => Rating.where(:name => ['I-3']),
 		:clubs => Club.where(:name => ['Nimbus FSK']))
    Jumper.create(name: 'Martin Engum', license: 'C', description: '',
-		phone: '48012441', email: 'somewhere@example.org', verified: 'true',
+		phone: '48022441', email: 'somewhessre@example.org', verified: 'true',
 		licensenumber: '98234',
 		nextofkin_name: 'Generic kin', nextofkin_relation: 'Friend', 
 		nextofkin_address: 'Generic address', nextofkin_phone: '12346578',
@@ -103,5 +103,4 @@
   Slot.create(height: '3500', jumptype: 'Tren', :load => @loads[0], :jumper => @jumpers[2], price: '180')
   Slot.create(height: '3500', jumptype: 'Tren', :load => @loads[0], :jumper => @jumpers[0], price: '275')
   Slot.create(height: '3500', jumptype: 'Tren', :load => @loads[0], :jumper => @jumpers[6], price: '150')
-
-   puts "Success: Test data loaded"
+  puts "Success: Test data loaded"
