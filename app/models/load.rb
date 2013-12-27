@@ -1,9 +1,9 @@
 class Load < ActiveRecord::Base
-  validates :pilot, :aircraft, presence: true
+  validates :pilot, :aircraft, :location, :state,  presence: true
   belongs_to :jumper
   has_many :slots
   belongs_to :aircraft
-
+	scope :active, -> { where(state != "Landed") }
 	before_save :loadnumber
 
 
@@ -35,16 +35,9 @@ class Load < ActiveRecord::Base
   end
 
   class << self
-    # FIXME: Placeholder for viewing the loads that are currently active.
-    # This means: Todays loads that does not have the status "landed"
-    def active_loads
-      Load.all
-    end
-
 		def states
 			return ["Manifesting","In the air","Landed"]
 		end
-
   end
 
 end
