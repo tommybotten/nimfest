@@ -67,9 +67,9 @@
 		:clubs => Club.where(:name => ['Nimbus FSK']))
 
    Load.delete_all
-   Load.create(pilot: 'Martin Stene', flighttime: '21', location: 'Rakkestad', loadfortheday: '1', departure_timestamp: Time.now - 60.minutes, aircraft: Aircraft.first, created_at: Time.now)
-   Load.create(pilot: 'Martin Stene', flighttime: '19', location: 'Rakkestad', loadfortheday: '2', departure_timestamp: Time.now - 40.minutes, aircraft: Aircraft.first, created_at: Time.now)
-   Load.create(pilot: 'Martin Stene', flighttime: '25', location: 'Rakkestad', loadfortheday: '3', departure_timestamp: Time.now, aircraft: Aircraft.first, created_at: Time.now)
+   Load.create(pilot: 'Martin Stene', flighttime: '21', location: 'Rakkestad', loadfortheday: '1', departure_timestamp: Time.now - 60.minutes, aircraft: Aircraft.first, created_at: Time.now, state: "Landed")
+   Load.create(pilot: 'Martin Stene', flighttime: '19', location: 'Rakkestad', loadfortheday: '2', departure_timestamp: Time.now - 40.minutes, aircraft: Aircraft.first, created_at: Time.now, state: "In the air")
+   Load.create(pilot: 'Martin Stene', flighttime: '25', location: 'Rakkestad', loadfortheday: '3', departure_timestamp: Time.now, aircraft: Aircraft.first, created_at: Time.now, state: "Manifesting")
 
   Price.delete_all
 	Price.create(height: '2500', price: '130')
