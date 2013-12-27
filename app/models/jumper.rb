@@ -45,6 +45,11 @@ class Jumper < ActiveRecord::Base
 		def kin_relation
 			return ["Father","Mother","Sibling","Spouse","Friend"]
 		end
+
+		def hls
+			# Needs more logic. Should check if there are students on the current load for instance.
+			hls = Jumper.where(:license => "D")
+		end
  
 #    def frequent_flyer
 #      self.

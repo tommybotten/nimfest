@@ -9,7 +9,7 @@
           <th>Aircraft: <%= load.aircraft.name %></th>
           <th>DropZone: <%= load.location %></th>
           <th>HFL: <%= load.hfl %></th>
-          <th>HL: Placeholder</th>
+          <th>HL: <%= link_to load.hl.name, load.hl if load.hl %></th>
         </tr>
         <tr>
           <th>Skydiver</th>
