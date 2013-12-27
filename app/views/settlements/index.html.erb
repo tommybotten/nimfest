@@ -34,10 +34,10 @@
   <% @loads.each do |load| %>
     <tr>
       <td><%= load.loadfortheday %></td>
-			<td><%= load.flighttime %></td> <% tot_flighttime += load.flighttime %>
-      <td><%= load.cost %></td> <% tot_load_cost += load.cost %>
+			<td><%= load.flighttime %></td> <% tot_flighttime += load.flighttime if load.flighttime? %>
+      <td><%= load.cost %></td> <% tot_load_cost += load.cost if load.flighttime? %>
       <td><%= load.paid %></td> <% tot_paid += load.paid %>
-      <td><%= load.paid - load.cost %></td> <% tot_result += load.paid - load.cost %>
+      <td><%= load.paid - load.cost if load.flighttime? %></td> <% tot_result += load.paid - load.cost if load.flighttime?  %>
     </tr>
 	<% end %>
     <tr>

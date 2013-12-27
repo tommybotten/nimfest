@@ -31,7 +31,7 @@ class Load < ActiveRecord::Base
   end
 
   def cost
-    self.aircraft.price / 60 * self.flighttime
+    self.aircraft.price / 60 * self.flighttime if self.flighttime?
   end
 
   class << self
