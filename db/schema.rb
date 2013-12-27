@@ -77,7 +77,7 @@ ActiveRecord::Schema.define(version: 20131227164651) do
     t.string   "hfl"
     t.string   "state"
     t.integer  "hl_id"
-    t.string   "hl_type"
+    t.string   "hl_type",             default: "Jumper"
   end
 
   create_table "prices", force: true do |t|
