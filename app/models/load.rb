@@ -1,4 +1,5 @@
 class Load < ActiveRecord::Base
+	before_save :default_values
   validates :pilot, :aircraft, :location, :state,  presence: true
   belongs_to :jumper
 	belongs_to :hl, polymorphic: true
@@ -39,6 +40,10 @@ class Load < ActiveRecord::Base
 		def states
 			return ["Manifesting","In the air","Landed"]
 		end
+  end
+	
+  def default_values
+    self.hl_type ||= "Jumper"
   end
 
 end

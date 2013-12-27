@@ -1,5 +1,4 @@
 class Jumper < ActiveRecord::Base
-	before_save :default_values
   validates :email, :name, :license, :clubs, :phone, :nextofkin_name, :nextofkin_address, :nextofkin_phone, :nextofkin_relation, presence: true
   has_and_belongs_to_many :clubs
   has_and_belongs_to_many :ratings
@@ -52,9 +51,6 @@ class Jumper < ActiveRecord::Base
 		end
  
 
-    def default_values
-      self.hl_type ||= "Jumper"
-    end
 
 #    def frequent_flyer
 #      self.
