@@ -1,5 +1,12 @@
 class Jumper < ActiveRecord::Base
-  validates :email, :name, :license, :clubs, :phone, :nextofkin_name, :nextofkin_address, :nextofkin_phone, :nextofkin_relation, presence: true
+  validates :name, :license, :clubs, :phone, :nextofkin_name, :nextofkin_address, :nextofkin_phone, :nextofkin_relation, presence: true
+
+  validates :email, :format => { :with => /([^@\s]+)@((?:[-a-z0-9]+\.)*[a-z]{2,})/i },
+  	:length => { :maximum => 40 },
+		:allow_blank => false
+	validates_uniqueness_of :name, :licensenumber, :phone, :email
+
+
   has_and_belongs_to_many :clubs
   has_and_belongs_to_many :ratings
 	has_one :load , as: :hl
@@ -46,12 +53,10 @@ class Jumper < ActiveRecord::Base
 		end
 
 		def hls
-			# Needs more logic. Should check if there are students on the current load for instance.
-			hls = Jumper.where(:license => "D")
+			# Simple HL list. No logic related to student or other types of HL service.
+			hls = Jumper.where("license = \"D\" OR license = \"C\"")
 		end
  
-
-
 #    def frequent_flyer
 #      self.
 #
