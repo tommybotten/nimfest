@@ -1,14 +1,6 @@
 class Slot < ActiveRecord::Base
-  belongs_to :jumper
-  belongs_to :load
-
-
-
-
-  class << self
-		# Available jump types
-    def jumptypes
-      return ["Treningshopp",
+  # jumptype: "Treningshopp"
+      JUMPTYPES = ["Treningshopp",
 						"Demo",
 						"FS-Utsjekk",
 						"UL",
@@ -25,6 +17,17 @@ class Slot < ActiveRecord::Base
 						"Hop and pop",
 						"Fjellflyving"
 						]
+  validates :load_id,:price,:jumper_id,  presence: true
+  validates :height, :inclusion => 1500..15000
+  validates :jumptype, :inclusion => {in: JUMPTYPES }
+
+  belongs_to :jumper
+  belongs_to :load
+
+  class << self
+		# Available jump types
+    def jumptypes
+      return JUMPTYPES
     end
     def not_paid
       self.where.not(:paid)

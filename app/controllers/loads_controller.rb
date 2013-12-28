@@ -18,6 +18,7 @@ class LoadsController < ApplicationController
 		@load.pilot ||= Load.last.pilot
 		@load.location ||= Load.last.location
 		@load.aircraft ||= Load.last.aircraft
+		@load.hfl ||= Load.last.hfl
 		@slots = Slot.new
   end
 
@@ -35,7 +36,7 @@ class LoadsController < ApplicationController
 
     respond_to do |format|
       if @load.save
-        format.html { redirect_to loads_path, notice: 'Load was successfully created.' }
+        format.html { redirect_to edit_load_path(@load), notice: 'Load was successfully created.' }
         format.json { render action: 'show', status: :created, location: @load }
       else
         format.html { render action: 'new' }

@@ -28,7 +28,8 @@ class SlotsController < ApplicationController
 
     respond_to do |format|
       if @slot.save
-        format.html { redirect_to @slot, notice: 'Slot was successfully created.' }
+        binding.pry
+        format.html { redirect_to edit_load_path (@slot.load), notice: 'Slot was successfully created.' }
         format.json { render action: 'show', status: :created, location: @slot }
       else
         format.html { render action: 'new' }
@@ -42,7 +43,7 @@ class SlotsController < ApplicationController
   def update
     respond_to do |format|
       if @slot.update(slot_params)
-        format.html { redirect_to @slot, notice: 'Slot was successfully updated.' }
+        format.html { redirect_to edit_load_path(@slot.load), notice: 'Slot was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
