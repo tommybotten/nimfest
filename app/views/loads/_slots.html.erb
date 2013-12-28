@@ -7,7 +7,7 @@
 		<th>Submit</th>
 	</tr>
 <% @slots.each do |slots| -%>
-	<%= form_for(slots, remote: true) do |f| %>
+	<%= form_for(slots) do |f| %>
 	  <% if slots.errors.any? %>
 	    <div id="error_explanation">
 	      <h2><%= pluralize(slots.errors.count, "error") %> prohibited this slot from being saved:</h2>
@@ -21,10 +21,10 @@
 	  <% end %>
 		<tr>
       <td class="field">
-		    <%= f.text_field :jumper, value: slots.jumper.name %>
+	    	<%= f.collection_select :jumper_id, Jumper.all,:id,:name %>
 		  </td>
       <td class="field">
-	    	<%= f.collection_select :height, Price.order(:height),:id,:height %>
+	    	<%= f.collection_select :height, Price.order(:height),:height,:height %>
 		  </td>
 		  <td class="field">
 	      <%= f.select :jumptype , Slot.jumptypes %>
@@ -39,12 +39,13 @@
 	<% end %>
 <% end %>
 
-<% if @slots.empty? and @load.aircraft.present? %>
-  <% range = 1..@load.aircraft.capacity %>
+<% if @slots.empty? or @load.aircraft.capacity > (@slots.size - @load.aircraft.capacity) %>
+  <% range = 1..(@load.aircraft.capacity - @slots.size) %>
   <% range.each do |slots| -%>
   <% slot = Slot.new %>
     
-  	<%= form_for(slot, remote: true) do |f| %>
+  <%= form_for(slot) do |f| %>
+    <%= hidden_field(:slot, :load_id, :value => @load.id) %>
   	  <% if slot.errors.any? %>
   	    <div id="error_explanation">
   	      <h2><%= pluralize(slot.errors.count, "error") %> prohibited this slot from being saved:</h2>
@@ -58,10 +59,10 @@
   	  <% end %>
   		<tr>
         <td class="field">
-  		    <%= f.text_field :jumper, value: slot.jumper %>
+	    	  <%= f.collection_select :jumper_id, Jumper.all,:id,:name, include_blank: true%>
   		  </td>
         <td class="field">
-  	    	<%= f.collection_select :height, Price.order(:height),:id,:height %>
+	    	  <%= f.collection_select :height, Price.order(:height),:height,:height %>
   		  </td>
   		  <td class="field">
   	      <%= f.select :jumptype , Slot.jumptypes %>
