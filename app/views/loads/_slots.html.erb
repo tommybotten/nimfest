@@ -19,7 +19,7 @@
 	      </ul>
 	    </div>
 	  <% end %>
-		<tr>
+		<tr <%= 'class=success' if slots.jumpmaster? -%>>
       <td class="field">
 	    	<%= f.collection_select :jumper_id, Jumper.all,:id,:name %>
 		  </td>
@@ -60,7 +60,7 @@
   	      <% end %>
   	      </ul>
   	    </div>
-  	  <% end %>
+      <% end %>
   		<tr>
         <td class="field">
 	    	  <%= f.collection_select :jumper_id, Jumper.all,:id,:name, include_blank: true%>
