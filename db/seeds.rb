@@ -95,7 +95,7 @@
   Slot.create(height: '6000', jumptype: 'Treningshopp', :load => @loads[1], :jumper => @jumpers[5], price: '180')
   Slot.create(height: '6000', jumptype: 'Treningshopp', :load => @loads[1], :jumper => @jumpers[1], price: '180')
   Slot.create(height: '6000', jumptype: 'Treningshopp', :load => @loads[1], :jumper => @jumpers[2], jumpmaster: 'true', price: '180')
-  Slot.create(height: '6000', jumptype: 'FF-15',:load => @loads[1], :jumper => @jumpers[3], price: '275')
+  Slot.create(height: '6000', jumptype: 'FF-15 sekunder',:load => @loads[1], :jumper => @jumpers[3], price: '275')
   Slot.create(height: '3500', jumptype: 'Treningshopp', :load => @loads[1], :jumper => @jumpers[6], price: '150')
 
   Slot.create(height: '3500', jumptype: 'Treningshopp', :load => @loads[0], :jumper => @jumpers[5], price: '180')
