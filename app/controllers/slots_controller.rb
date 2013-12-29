@@ -28,7 +28,6 @@ class SlotsController < ApplicationController
 
     respond_to do |format|
       if @slot.save
-        binding.pry
         format.html { redirect_to edit_load_path (@slot.load), notice: 'Slot was successfully created.' }
         format.json { render action: 'show', status: :created, location: @slot }
       else
