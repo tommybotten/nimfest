@@ -1,6 +1,7 @@
 <%= link_to 'New Load', new_load_path %>
 <div>
   <% @loads.each do |load| %>
+		<% next unless Time.zone.now.beginning_of_day.eql?(load.created_at.beginning_of_day) %>
     <h2><%= link_to "Load " + load.loadfortheday.to_s , edit_load_path(load) %> <%= load.departure_timestamp.strftime("%H:%M") if load.departure_timestamp? %></h2>
     <table class="table table-bordered">
       <thead>

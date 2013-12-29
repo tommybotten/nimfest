@@ -8,7 +8,7 @@
 <% @jumpers.each do |jumper| %>
 	<% if jumper.outstanding_amount != 0 %>
 	<tr>
-		<td><%= jumper.name %></td>
+		<td><%= link_to jumper.name, jumper_path(jumper) %></td>
 		<td><%= jumper.outstanding_amount %></td>
 	</tr>
 	<% end %>
@@ -32,8 +32,9 @@
 	<%tot_paid = 0%>
 	<%tot_result = 0%>
   <% @loads.each do |load| %>
+		<% next unless Time.zone.now.beginning_of_day.eql?(load.created_at.beginning_of_day) %>
     <tr>
-      <td><%= load.loadfortheday %></td>
+      <td><%= link_to load.loadfortheday, edit_load_path(load) %></td>
 			<td><%= load.flighttime %></td> <% tot_flighttime += load.flighttime if load.flighttime? %>
       <td><%= load.cost %></td> <% tot_load_cost += load.cost if load.flighttime? %>
       <td><%= load.paid %></td> <% tot_paid += load.paid %>
@@ -59,7 +60,8 @@
   </tr>
   <% @slots.each do |slot| %>
     <tr>
-      <td><%= @jumpers.where(id: slot.jumper_id).first.name %></td>
+      <% jumper = @jumpers.where(id: slot.jumper_id).first %>
+      <td><%= link_to jumper.name, jumper_path(jumper) %></td>
       <td><%= slot.count %></td>
       <td>Placeholder</td>
     </tr>
