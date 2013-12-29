@@ -3,7 +3,7 @@ class Load < ActiveRecord::Base
   validates :pilot, :aircraft, :location, :state,  presence: true
   belongs_to :jumper
 	belongs_to :hl, polymorphic: true
-  has_many :slots
+  has_many :slots, :dependent => :destroy
   belongs_to :aircraft
 	scope :active, -> { where(state != "Landed") }
 	before_save :loadnumber

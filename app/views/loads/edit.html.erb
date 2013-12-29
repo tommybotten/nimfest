@@ -3,5 +3,4 @@
 <%= render 'form' %>
 <%= render 'slots' %>
 
-<%= link_to 'Show', @load %> |
-<%= link_to 'Back', loads_path %>
+<%= link_to 'Delete', @load, method: :delete, data: { confirm: 'Delete the load and all related slots?' } %>
