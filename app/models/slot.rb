@@ -17,6 +17,9 @@ class Slot < ActiveRecord::Base
     "Fjellflyging"]
 
   before_validation :set_default_price
+  before_create :verify_duplicate_jumper
+  # Breaks _any_ update:
+#  before_update :verify_duplicate_jumper
   validates :load_id,:price,:jumper_id,  presence: true
   validates :height, :inclusion => 1500..15000
   validates :jumptype, :inclusion => {in: JUMPTYPES }
@@ -51,4 +54,13 @@ class Slot < ActiveRecord::Base
       self.price = "270" if self.jumper.license == "E"
     end
 
+    def verify_duplicate_jumper
+      # A skydiver cannot be registered twice on a load. Is this the correct way to do this?
+      # Also, this breaks for updates on an existing load... How to fix? More logic 
+      # with slot id? ... seems crappy.
+      if self.load.slots.where("jumper_id = ?", self.jumper_id).count >= 1
+        errors.add(:base, 'A skydiver cannot appear twice on a single load')
+        return false
+      end
+    end
 end

@@ -1,3 +1,4 @@
+<%= link_to 'New Load', new_load_path %>
 <div>
   <% @loads.each do |load| %>
     <h2><%= link_to "Load " + load.loadfortheday.to_s , edit_load_path(load) %> <%= load.departure_timestamp.strftime("%H:%M") if load.departure_timestamp? %></h2>
@@ -33,4 +34,3 @@
 
 <br>
 
-<%= link_to 'New Load', new_load_path %>

@@ -4,7 +4,7 @@
 		<th>Height</th>
 		<th>Type</th>
 		<th>Price</th>
-		<th>Submit</th>
+		<th>Change</th>
 	</tr>
 <% @slots.each do |slots| -%>
 	<%= form_for(slots) do |f| %>
@@ -33,8 +33,12 @@
 		    <%= f.text_field :price %>
 		  </td>
 		  <td class="actions">
-		    <%= f.submit 'Update'%>
-		  </td>
+        <%= f.submit 'Update'%>
+      </td>
+      <td>
+        <%= link_to 'Details', edit_slot_path(slots) %>
+        <%= link_to 'Delete', slots, method: :delete, data: { confirm: 'Are you sure? Slot will be gone forever' } %>
+     </td>
 		</tr>
 	<% end %>
 <% end %>
