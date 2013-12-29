@@ -15,10 +15,10 @@ class LoadsController < ApplicationController
   # GET /loads/new
   def new
     @load = Load.new
-		@load.pilot ||= Load.last.pilot
-		@load.location ||= Load.last.location
-		@load.aircraft ||= Load.last.aircraft
-		@load.hfl ||= Load.last.hfl
+		@load.pilot ||= Load.last.pilot if Load.last? 
+		@load.location ||= Load.last.location if Load.last? 
+		@load.aircraft ||= Load.last.aircraft if Load.last? 
+		@load.hfl ||= Load.last.hfl if Load.last? 
 		@slots = Slot.new
   end
 
