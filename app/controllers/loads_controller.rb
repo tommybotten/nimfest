@@ -27,6 +27,14 @@ class LoadsController < ApplicationController
     @slots = @load.slots
 		@slot = Slot.new
 		@aircraft = @load.aircraft
+
+		avail_jumpers ||= []
+		used_jumpers ||= []
+		slots = @load.slots.all
+		slots.each do |slot|
+			used_jumpers << slot.jumper
+		end
+		@avail_jumpers = Jumper.all - used_jumpers
   end
 
   # POST /loads

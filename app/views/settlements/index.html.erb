@@ -58,7 +58,7 @@
     <th>Total number of jumps</th>
     <th>Jumps last year</th>
   </tr>
-  <% @slots.each do |slot| %>
+  <% @ff_top_ten.each do |slot| %>
     <tr>
       <% jumper = @jumpers.where(id: slot.jumper_id).first %>
       <td><%= link_to jumper.name, jumper_path(jumper) %></td>

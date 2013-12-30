@@ -63,7 +63,7 @@
       <% end %>
   		<tr>
         <td class="field">
-	    	  <%= f.collection_select :jumper_id, Jumper.all,:id,:name, include_blank: true%>
+	    	  <%= f.collection_select :jumper_id, @avail_jumpers,:id,:name, include_blank: true%>
   		  </td>
         <td class="field">
 	    	  <%= f.collection_select :height, Price.order(:height),:height,:height %>
