@@ -12,6 +12,7 @@ class Slot < ActiveRecord::Base
     "FF-30 sekunder",
     "FS-Utsjekk",
     "FF-Utsjekk",
+    "Utfyllingshopp, elev",
     "Wingsuit",
     "Hop and pop",
     "Fjellflyging"]
@@ -51,7 +52,7 @@ class Slot < ActiveRecord::Base
       if self.price.nil?
         self.price = Price.find_by_height(self.height).price
       end
-      self.price = "270" if self.jumper.license == "E"
+#      self.price = "270" if self.jumper.license == "E"
     end
 
     def verify_duplicate_jumper
