@@ -5,7 +5,7 @@ class LoadsController < ApplicationController
   # GET /loads.json
   def index
     @load_dates = Load.dates
-    @loads = Load.order(departure_timestamp: :desc)
+    @loads = Load.active
   end
 
   # GET /loads/1
