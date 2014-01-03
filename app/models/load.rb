@@ -54,12 +54,6 @@ class Load < ActiveRecord::Base
 			return array
     end
   end
-	
-
-  private
-  def default_values
-    self.hl_type ||= "Jumper"
-  end
 
   def free
     avail_jumpers ||= []
@@ -69,6 +63,11 @@ class Load < ActiveRecord::Base
       used_jumpers << slot.jumper
     end
     return Jumper.all - used_jumpers
+  end
+
+  private
+  def default_values
+    self.hl_type ||= "Jumper"
   end
 
 end
