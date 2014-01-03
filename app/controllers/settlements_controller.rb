@@ -1,5 +1,4 @@
 class SettlementsController < ApplicationController
-
   def index
     @outstanding_payments = Slot.not_paid
     @total_outstanding = Slot.total_not_paid
@@ -10,20 +9,8 @@ class SettlementsController < ApplicationController
   end
 
   def show
-    # Shows statistics for a given day
-    @loads = Load.all
-    #
+    # @date needs to be converted. Clumsy deserialization.
+		@date = Time.parse(params[:id]).in_time_zone(Time.zone)
+    @loads = Load.where(:departure_timestamp => @date.beginning_of_day..@date.end_of_day)
   end
-
-  private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_load
-      @load = Load.find(params[:id])
-    end
-
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def load_params
-      params.require(:load).permit(:pilot, :flighttime, :location, :departure_timestamp, :aircraft_id, :hfl, :state, :hl_id)
-    end
-
 end

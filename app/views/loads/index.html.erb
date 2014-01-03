@@ -1,5 +1,8 @@
 <%= link_to 'New Load', new_load_path %>
 <div>
+<% @load_dates.each do |load_date| %>
+  <%= link_to load_date, load_path(load_date) %>
+<% end %>
   <p>Stuff with links to previous days as well as "show all loads"</p>
   <% @loads.each do |load| %>
     <h2><%= link_to "Load " + load.loadfortheday.to_s , edit_load_path(load) %> <%= load.departure_timestamp.strftime("%H:%M") if load.departure_timestamp? %></h2>

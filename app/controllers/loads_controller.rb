@@ -4,6 +4,7 @@ class LoadsController < ApplicationController
   # GET /loads
   # GET /loads.json
   def index
+    @load_dates = Load.dates
     @loads = Load.order(departure_timestamp: :desc)
   end
 
@@ -11,6 +12,13 @@ class LoadsController < ApplicationController
   # GET /loads/1.json
   def show
   end
+
+	def show_days
+    # @date needs to be converted. Clumsy deserialization.
+		@date = Time.parse(params[:id]).in_time_zone(Time.zone)
+    @loads = Load.where(:departure_timestamp => @date.beginning_of_day..@date.end_of_day)
+	end
+
 
   # GET /loads/new
   def new
