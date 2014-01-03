@@ -1,6 +1,6 @@
 class Load < ActiveRecord::Base
 	before_save :default_values
-  validates :pilot, :aircraft, :location, :state,  presence: true
+  validates :pilot, :aircraft, :location, :state, :departure_timestamp, presence: true
   belongs_to :jumper
 	belongs_to :hl, polymorphic: true
   has_many :slots, :dependent => :destroy
@@ -40,8 +40,23 @@ class Load < ActiveRecord::Base
 		def states
 			return ["Manifesting","In the air","Landed"]
 		end
+
+    def today
+      self.where(:created_at => (Time.now.beginning_of_day..Time.now.end_of_day))
+    end
+
+    def dates
+			# This is kind of horrible. I presume this breaks database compatability with other RDBMs...
+			array = Array.new
+      Load.connection.select_all("SELECT DISTINCT(DATE(departure_timestamp)) as dates FROM loads;").each do |date|
+				array << date.first.last
+			end
+			return array
+    end
   end
 	
+
+  private
   def default_values
     self.hl_type ||= "Jumper"
   end
