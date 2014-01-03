@@ -1,13 +1,7 @@
-<strong>
-<%= link_to 'New Load', new_load_path %>
-<div><p>
-	<%= link_to "stuff", settlement_path(Time.now.strftime("%Y-%m-%d")) %>
-<% @load_dates.each do |load_date| %>
-  <%= link_to load_date, settlement_path(load_date) %>
-<% end %>
-</p></strong>
+
+<div>
+  <p>Stuff with links to previous days as well as "show all loads"</p>
   <% @loads.each do |load| %>
-		<% next unless Time.zone.now.beginning_of_day.eql?(load.created_at.beginning_of_day) %>
     <h2><%= link_to "Load " + load.loadfortheday.to_s , edit_load_path(load) %> <%= load.departure_timestamp.strftime("%H:%M") if load.departure_timestamp? %></h2>
     <table class="table table-bordered">
       <thead>
@@ -39,5 +33,6 @@
   <% end %>
 </div>
 
-<br>
-
+<% @loads.each do |load| %>
+	<%= load.id %>
+<% end %>
