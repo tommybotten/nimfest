@@ -46,7 +46,7 @@ class Slot < ActiveRecord::Base
       return amount
     end
   end
-  
+
   private
     def set_default_price
       if self.price.nil?

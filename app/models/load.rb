@@ -46,4 +46,14 @@ class Load < ActiveRecord::Base
     self.hl_type ||= "Jumper"
   end
 
+  def free
+    avail_jumpers ||= []
+    used_jumpers ||= []
+    slots = self.slots.all
+    slots.each do |slot|
+      used_jumpers << slot.jumper
+    end
+    return Jumper.all - used_jumpers
+  end
+
 end
