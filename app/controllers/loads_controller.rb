@@ -13,13 +13,6 @@ class LoadsController < ApplicationController
   def show
   end
 
-	def show_days
-    # @date needs to be converted. Clumsy deserialization.
-		@date = Time.parse(params[:id]).in_time_zone(Time.zone)
-    @loads = Load.where(:departure_timestamp => @date.beginning_of_day..@date.end_of_day)
-	end
-
-
   # GET /loads/new
   def new
     @load = Load.new

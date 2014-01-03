@@ -10,7 +10,8 @@ class SettlementsController < ApplicationController
 
   def show
     # @date needs to be converted. Clumsy deserialization.
-		@date = Time.parse(params[:id]).in_time_zone(Time.zone)
+    # Why is this off by one? ...
+		@date = Time.parse(params[:id]).in_time_zone(Time.zone) + 1.day
     @loads = Load.where(:departure_timestamp => @date.beginning_of_day..@date.end_of_day)
   end
 end
