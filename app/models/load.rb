@@ -40,6 +40,7 @@ class Load < ActiveRecord::Base
 		def states
 			return ["Manifesting","In the air","Landed"]
 		end
+
 		def active
 			self.order(departure_timestamp: :desc).where(:state => "Manifesting")
 		end
@@ -47,6 +48,7 @@ class Load < ActiveRecord::Base
     def today
       self.where(:created_at => (Time.now.beginning_of_day..Time.now.end_of_day))
     end
+
     def dates
 			# This is kind of horrible. I presume this breaks database compatability with other RDBMs...
 			array = Array.new
@@ -55,6 +57,7 @@ class Load < ActiveRecord::Base
 			end
 			return array
     end
+
   end
 
   def free

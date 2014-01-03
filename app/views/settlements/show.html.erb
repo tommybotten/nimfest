@@ -1,6 +1,4 @@
-
 <div>
-  <p>Stuff with links to previous days as well as "show all loads"</p>
   <% @loads.each do |load| %>
     <h2><%= link_to "Load " + load.loadfortheday.to_s , edit_load_path(load) %> <%= load.departure_timestamp.strftime("%H:%M") if load.departure_timestamp? %></h2>
     <table class="table table-bordered">
@@ -32,7 +30,3 @@
     </table>
   <% end %>
 </div>
-
-<% @loads.each do |load| %>
-	<%= load.id %>
-<% end %>
