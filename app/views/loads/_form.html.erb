@@ -21,7 +21,7 @@
 	    <%= f.label :pilot %><br>
 	    <%= f.text_field :pilot %>
 	  </td>
-	  <td class="field" width="50">
+	  <td class="field">
 	    <%= f.label :location %><br>
 	    <%= f.text_field :location %>
 	  </td>
@@ -42,7 +42,7 @@
     </script>
 	  </td>
 	</tr>
-	</tr>
+	<tr>
 	  <td class="field">
 	    <%= (f.label :hl) %><br>
 			<%= f.collection_select :hl_id, Jumper.hls,:id,:name %>
