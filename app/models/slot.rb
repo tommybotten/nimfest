@@ -14,6 +14,7 @@ class Slot < ActiveRecord::Base
     "FF-Utsjekk",
     "Utfyllingshopp, elev",
     "Wingsuit",
+    "AFF",
     "Hop and pop",
     "Fjellflyging"]
 
