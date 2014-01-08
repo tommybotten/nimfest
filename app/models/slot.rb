@@ -25,8 +25,9 @@ class Slot < ActiveRecord::Base
   validates :load_id,:price,:jumper_id,  presence: true
   validates :height, :inclusion => 1500..15000
   validates :jumptype, :inclusion => {in: JUMPTYPES }
+	before_save :check_jumpmaster
 
-  # Before save- if price is nil, update with default price.
+
   belongs_to :jumper
   belongs_to :load
 
@@ -65,4 +66,10 @@ class Slot < ActiveRecord::Base
         return false
       end
     end
+		
+		def check_jumpmaster
+			# Placeholder. Verify that the skydiver can indeed be a jumpmaster, and that
+			# there are not multiple.
+			return 1
+		end
 end

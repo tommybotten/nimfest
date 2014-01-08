@@ -1,10 +1,12 @@
 <table class="table table-bordered">
 	<tr>
-		<th>Skydiver</th>
-		<th>Height</th>
-		<th>Type</th>
-		<th>Price</th>
-		<th>Change</th>
+		<th class="span4">Skydiver</th>
+		<th class="span4">Height</th>
+		<th class="span4">Type</th>
+		<th class="span1">Price</th>
+		<th class="span1">Jumpmaster</th>
+		<th class="span1">Approved</th>
+		<th class="span4">Change</th>
 	</tr>
 <% @slots.each do |slots| -%>
 	<%= form_for(slots) do |f| %>
@@ -24,13 +26,19 @@
 	    	<%= f.collection_select :jumper_id, Jumper.all,:id,:name %>
 		  </td>
       <td class="field">
-	    	<%= f.collection_select :height, Price.order(:height),:height,:height %>
+	    	<%= f.collection_select :height, Price.order(:height),:height,:height, {},{:class=>'input-small'} %>
 		  </td>
 		  <td class="field">
-	      <%= f.select :jumptype , Slot.jumptypes %>
+	      <%= f.select :jumptype , Slot.jumptypes, {},{:class=>'input-medium'}%>
 		  </td>
 		  <td class="field">
-		    <%= f.text_field :price %>
+		    <%= f.text_field :price, :class => "input-mini" %>
+		  </td>
+		  <td class="field">
+		      <%= f.check_box :jumpmaster %>
+		  </td>
+		  <td class="field">
+		    <%= f.check_box :approved %>
 		  </td>
 		  <td class="actions">
         <%= f.submit 'Update'%>
@@ -66,13 +74,19 @@
 	    	  <%= f.collection_select :jumper_id, @load.free,:id,:name, include_blank: true%>
   		  </td>
         <td class="field">
-	    	  <%= f.collection_select :height, Price.order(:height),:height,:height %>
+	    	  <%= f.collection_select :height, Price.order(:height),:height,:height, {},{:class=>'input-small'} %>
   		  </td>
   		  <td class="field">
-  	      <%= f.select :jumptype , Slot.jumptypes %>
+  	      <%= f.select :jumptype , Slot.jumptypes, {},{:class=>'input-medium'} %>
   		  </td>
   		  <td class="field">
-  		    <%= f.text_field :price %>
+  		    <%= f.text_field :price, :class => "input-mini"  %>
+  		  </td>
+  		  <td class="field">
+		      <%= f.check_box :jumpmaster %>
+  		  </td>
+  		  <td class="field">
+		      <%= f.check_box :approved %>
   		  </td>
   		  <td class="actions">
   		    <%= f.submit 'Update'%>
