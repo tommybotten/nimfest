@@ -14,4 +14,11 @@ class SettlementsController < ApplicationController
 		@date = Time.parse(params[:id]).in_time_zone(Time.zone) + 1.day
     @loads = Load.where(:departure_timestamp => @date.beginning_of_day..@date.end_of_day)
   end
+
+	def pay_all
+		jumper = Jumper.find(params[:id])
+		jumper.pay_all
+		redirect_to(:back)
+	end
+
 end

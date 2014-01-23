@@ -6,6 +6,10 @@ Migrationtest::Application.routes.draw do
   resources :jumpers
   resources :clubs
   resources :ratings
-  resources :settlements
+  resources :settlements do
+		collection do
+			post 'pay_all'
+		end
+	end
   get "/" => "loads#index"
 end

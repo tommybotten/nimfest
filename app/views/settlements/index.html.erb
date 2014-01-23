@@ -11,6 +11,7 @@
 	<tr>
 		<td><%= link_to jumper.name, jumper_path(jumper) %></td>
 		<td><%= jumper.outstanding_amount %></td>
+		<td> <%= button_to "Mark as paid", {:controller => "settlements", :action => "pay_all", :id => jumper.id }, :class => "btn btn-small btn-link", :confirm =>  'Are you sure you want to mark all NOK ' + jumper.outstanding_amount.to_s + '.- as paid for ' + jumper.name %></td>
 	</tr>
 	<% end %>
 <% end %>
