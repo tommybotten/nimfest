@@ -31,6 +31,15 @@ class Slot < ActiveRecord::Base
   belongs_to :jumper
   belongs_to :load
 
+
+	def missing_approval
+		if self.jumper.license = "E" and self.approved.nil?
+			return true
+		else
+			return false
+		end
+	end
+
   class << self
 		# Available jump types
     def jumptypes
@@ -50,6 +59,8 @@ class Slot < ActiveRecord::Base
   end
 
   private
+
+
     def set_default_price
       if self.price.nil?
         self.price = Price.find_by_height(self.height).price

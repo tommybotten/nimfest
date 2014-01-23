@@ -35,7 +35,7 @@
         </tr>
       </thead>
       <% load.slots.each do |slot| -%>
-        <tr <%= 'class=success' if slot.jumpmaster? -%>>
+        <tr <%= 'class=success' if slot.jumpmaster? -%><%= 'class=warning' if slot.missing_approval -%>>
           <td><%= link_to slot.jumper.name, jumper_path(slot.jumper) %></td>
           <td><%= slot.jumper.license %></td>
           <td><%= slot.height %></td>
