@@ -13,7 +13,7 @@ class Jumper < ActiveRecord::Base
   has_many :slots
 
   def outstanding_payments
-    self.slots.where.not(:paid)
+    self.slots.where(:paid => !true)
   end
 
   def outstanding_amount
@@ -40,6 +40,13 @@ class Jumper < ActiveRecord::Base
 	def number_of_hfl_days
 		# Placeholder
 		return 1
+	end
+
+	def pay_all
+		self.slots.each do |slot|
+			slot.paid = true
+			slot.save
+		end
 	end
 
  
