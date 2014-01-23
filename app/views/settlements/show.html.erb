@@ -2,7 +2,7 @@
 <p>
 <%= link_to "Todays load", settlement_path(Time.now.strftime("%Y-%m-%d")) %>
 </p>
-<%= select_tag 'date_id', options_from_collection_for_select(Load.dates, 'to_s', 'to_s') %>
+<%= select_tag 'date_id', content_tag(:option,'Select date',:value=>"")+options_from_collection_for_select(Load.dates, 'to_s', 'to_s') %>
 <script>
     $(function(){
       $('#date_id').bind('change', function () {
