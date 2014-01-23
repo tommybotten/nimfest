@@ -67,7 +67,7 @@ class Load < ActiveRecord::Base
     slots.each do |slot|
       used_jumpers << slot.jumper
     end
-    return Jumper.all - used_jumpers
+    return Jumper.available - used_jumpers
   end
 
   private

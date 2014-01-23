@@ -63,6 +63,12 @@ class Jumper < ActiveRecord::Base
 			# Simple HL list. No logic related to student or other types of HL service.
 			hls = Jumper.where("license = \"D\" OR license = \"C\"")
 		end
+
+		def available
+			# More logic might come in here. For instance paid previous loads days,
+			# and so on.
+			return Jumper.where(:verified => true)
+		end
  
 #    def frequent_flyer
 #      self.
