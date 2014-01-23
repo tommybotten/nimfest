@@ -1,3 +1,10 @@
+<script type="text/javascript">
+if(window.location.href.substr(-2) !== "?r") {
+  window.location = window.location.href + "?r";
+}
+</script>
+
+
 <table class="table table-bordered">
 	<tr>
 		<th class="span4">Skydiver</th>
@@ -23,7 +30,7 @@
 	  <% end %>
 		<tr <%= 'class=success' if slots.jumpmaster? -%>>
       <td class="field">
-	    	<%= f.collection_select :jumper_id, Jumper.all,:id,:name %>
+	    	<%= f.collection_select :jumper_id, Jumper.available,:id,:name %>
 		  </td>
       <td class="field">
 	    	<%= f.collection_select :height, Price.order(:height),:height,:height, {},{:class=>'input-small'} %>
