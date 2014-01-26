@@ -1,8 +1,10 @@
 <h1>Listing slots</h1>
 
-<table>
+<table class="table table-bordered">
   <thead>
     <tr>
+      <th>Jumper</th>
+      <th>Load ID / ID/Day </th>
       <th>Height</th>
       <th>Price</th>
       <th>Paid</th>
@@ -17,7 +19,9 @@
 
   <tbody>
     <% @slots.each do |slot| %>
-      <tr>
+      <tr <%= 'class=error' if slot.missing_approval -%><%= 'class=info' unless slot.paid? -%>>
+        <td><%= link_to slot.jumper.name, jumper_path(slot.jumper) %></td>
+        <td><%= link_to slot.load.id.to_s + " / " + slot.load.loadfortheday.to_s , edit_load_path(slot.load.id) %>
         <td><%= slot.height %></td>
         <td><%= slot.price %></td>
         <td><%= slot.paid %></td>
