@@ -33,7 +33,7 @@ class Slot < ActiveRecord::Base
 
 
 	def missing_approval
-		if self.jumper.license = "E" and self.approved.nil?
+		if self.jumper.license == "E" and self.approved.nil?
 			return true
 		else
 			return false
