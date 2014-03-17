@@ -1,16 +1,4 @@
 <h1>Settlements and statistics</h1>
-<%= select_tag 'date_id', content_tag(:option,'Select date',:value=>"")+options_from_collection_for_select(Load.dates, 'to_s', 'to_s') %>
-<script>
-    $(function(){
-      $('#date_id').bind('change', function () {
-         var url = "/settlements/" + $(this).val()
-          if (url) {
-              window.location.replace(url);
-          }
-          return false;
-      });
-    });
-</script>
 
 <h3>Outstanding payments</h3>
 <table class="table table-bordered">
