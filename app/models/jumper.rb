@@ -5,7 +5,7 @@ class Jumper < ActiveRecord::Base
   	:length => { :maximum => 40 },
 		:allow_blank => false
 	validates_uniqueness_of :name, :licensenumber, :phone, :email
-
+  scope :for_year, lambda {|date| where("date >= ? and date <= ?", "#{date.year}0101", "#{date.year}1231")}
 
   has_and_belongs_to_many :clubs
   has_and_belongs_to_many :ratings

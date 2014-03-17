@@ -40,7 +40,14 @@ class Slot < ActiveRecord::Base
 		end
 	end
 
+
   class << self
+    def by_year(year)
+        dt = DateTime.new(year)
+        boy = dt.beginning_of_year
+        eoy = dt.end_of_year
+        where("created_at >= ? and created_at <= ?", boy, eoy)
+    end
 		# Available jump types
     def jumptypes
       return JUMPTYPES
@@ -58,8 +65,8 @@ class Slot < ActiveRecord::Base
     end
   end
 
-  private
 
+  private
 
     def set_default_price
       if self.price.nil?
