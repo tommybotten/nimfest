@@ -4,7 +4,7 @@ class JumpersController < ApplicationController
   # GET /jumpers
   # GET /jumpers.json
   def index
-    @jumpers = Jumper.all
+    @jumpers = Jumper.order(:name)
   end
 
   # GET /jumpers/1

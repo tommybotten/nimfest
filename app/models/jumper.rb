@@ -13,7 +13,7 @@ class Jumper < ActiveRecord::Base
   has_many :slots
 
   def outstanding_payments
-    self.slots.where(:paid => !true)
+    self.slots.where(:paid => nil)
   end
 
   def outstanding_amount
