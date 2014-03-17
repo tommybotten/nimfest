@@ -16,7 +16,7 @@
 
   <tbody>
     <% @jumpers.each do |jumper| %>
-      <tr>
+      <tr <%= 'class=success' if jumper.verified? -%>>
         <td><%= link_to jumper.name, edit_jumper_path(jumper) %></td>
         <td><%= jumper.license %></td>
         <td><%= jumper.ratings.map(&:name).join(",") %></td>
