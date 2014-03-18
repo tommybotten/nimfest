@@ -42,6 +42,12 @@ class Slot < ActiveRecord::Base
 
 
   class << self
+    def by_day(date)
+        dt = Time.new(date.to_s)
+        bod = dt.beginning_of_day
+        eod = dt.end_of_day
+        where("created_at >= ? and created_at <= ?", bod, eod)
+    end
     def by_year(year)
         dt = DateTime.new(year)
         boy = dt.beginning_of_year
