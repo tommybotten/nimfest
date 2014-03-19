@@ -87,7 +87,12 @@
 		<th>Amount</th>
 	</tr>
 
-
+  <% @jumper_payment_hash.each do |jumper_name, sum| -%>
+  <tr>
+    <td><%= jumper_name %></td>
+    <td><%= sum %></td>
+  </tr>
+<% end %>
 
 </table>
 </div>
