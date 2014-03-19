@@ -79,7 +79,20 @@
       <th><%=tot_result%></th>
     </tr>
 </table>
-  
-  </table>
 
+<h2>Payment information</h2>
+<table class="table table-bordered">
+	<tr class="thead">
+		<th>Name</th>
+		<th>Amount</th>
+	</tr>
+
+  <% @jumper_payment_hash.each do |jumper_name, sum| -%>
+  <tr>
+    <td><%= jumper_name %></td>
+    <td><%= sum %></td>
+  </tr>
+<% end %>
+
+</table>
 </div>

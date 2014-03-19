@@ -42,12 +42,29 @@ class Slot < ActiveRecord::Base
 
 
   class << self
+    def by_day(date)
+        dt = date.to_time
+        bod = dt.beginning_of_day
+        eod = dt.end_of_day
+        where("updated_at >= ? and updated_at <= ?", bod, eod)
+    end
+
     def by_year(year)
         dt = DateTime.new(year)
         boy = dt.beginning_of_year
         eoy = dt.end_of_year
-        where("created_at >= ? and created_at <= ?", boy, eoy)
+        where("updated_at >= ? and updated_at <= ?", boy, eoy)
     end
+
+    def outstanding_by_day(date)
+      # Returns the amount of outstanding for each jumper by day.
+       outstanding_hash = self.by_day(date.to_s).group(:jumper_id).sum(:price)
+       jumper_hash = Hash.new
+       outstanding_hash.each {|jumper_id, sum| jumper_hash.merge!({ Jumper.find(jumper_id).name => sum }) }
+       return jumper_hash
+    end
+
+
 		# Available jump types
     def jumptypes
       return JUMPTYPES

@@ -12,6 +12,7 @@ class SettlementsController < ApplicationController
     # @date needs to be converted. Clumsy deserialization.
 		@date = Time.parse(params[:id]).in_time_zone(Time.zone)
     @loads = Load.where(:departure_timestamp => @date.beginning_of_day..@date.end_of_day)
+    @jumper_payment_hash = Slot.outstanding_by_day(params[:id])
   end
 
 	def pay_all
