@@ -1,6 +1,9 @@
 <p id="notice"><%= notice %></p>
 
-<p><strong><%= @jumper.name %>, <%= @jumper.license %>#<%= @jumper.licensenumber %> (<%= @jumper.ratings.map(&:name).join(",") %>)</strong></p></br>
+<p><strong><%= @jumper.name %>, <%= @jumper.license %>#<%= @jumper.licensenumber %> (<%= @jumper.ratings.map(&:name).join(",") %>)</strong>
+<%= '<img src="/verified.png">'.html_safe if @jumper.verified? %>
+
+</p></br>
 
 
 <p>
@@ -12,11 +15,6 @@
   <strong>Contact:</strong><br />
   <%= @jumper.phone %><br />
   <%= mail_to @jumper.email %>
-</p>
-
-<p>
-  <strong>Verified:</strong>
-  <%= @jumper.verified %>
 </p>
 
 <p>
@@ -32,15 +30,29 @@
   <%= @jumper.slots.size %>
 </p>
 
-<p>
-  <strong>Number of jumps current year</strong>
-  Placeholder. Define model for this.
-</p>
-
-<p>Additional outstanding: Jumplog, statistics, calendar.</p>
-
 <p>Outstanding payment: <%= @jumper.outstanding_amount %></p>
 <p>Jumpmastered loads: <%= @jumper.number_of_jumpmaster_loads %></p>
+
+<h2>Jumplog</h2>
+<table class="table table-bordered">
+	<tr>
+		<th>Date</th>
+		<th>Height</th>
+		<th>Jumptype</th>
+		<th>Price</th>
+	</tr>
+
+<% @jumper.slots.reverse_each do |slot| %>
+	<tr>
+		<td><%= slot.created_at.strftime("%B %d, %Y - %H:%M") %></td>
+		<td><%= slot.height %></td>
+		<td><%= slot.jumptype %></td>
+		<td><%= slot.price %></td>
+	</tr>
+<%end %>
+</table>
+
+
 
 <%= link_to 'Edit', edit_jumper_path(@jumper) %> |
 <%= link_to 'Back', jumpers_path %>
