@@ -1,7 +1,7 @@
 <p id="notice"><%= notice %></p>
 
-<p><strong><%= @jumper.name %>, <%= @jumper.license %>#<%= @jumper.licensenumber %> (<%= @jumper.ratings.map(&:name).join(",") %>)</strong>
-<%= '<img src="/verified.png">'.html_safe if @jumper.verified? %>
+<h1><%= @jumper.name %>, <%= @jumper.license %>#<%= @jumper.licensenumber %> <%= @jumper.ratings.map(&:name).join(",") %>
+<%= '<img src="/verified.png">'.html_safe if @jumper.verified? %></h1>
 
 </p></br>
 
@@ -26,7 +26,7 @@
 </p>
 
 <p>
-  <strong>Total number of jumps logged here:</strong>
+  <strong>Total number of jumps logged at this DZ:</strong>
   <%= @jumper.slots.size %>
 </p>
 
@@ -44,7 +44,7 @@
 
 <% @jumper.slots.reverse_each do |slot| %>
 	<tr>
-		<td><%= slot.created_at.strftime("%B %d, %Y - %H:%M") %></td>
+		<td><%= link_to slot.created_at.strftime("%B %d, %Y - %H:%M"), edit_load_path(slot.load) %></td>
 		<td><%= slot.height %></td>
 		<td><%= slot.jumptype %></td>
 		<td><%= slot.price %></td>
