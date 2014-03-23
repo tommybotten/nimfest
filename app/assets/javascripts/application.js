@@ -16,3 +16,6 @@
 //= require turbolinks
 //= require_tree .
 //= require bootstrap-datetimepicker
+//= require highcharts/highcharts
+//= require highcharts/highcharts-more
+//= require highcharts/highstock
