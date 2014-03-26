@@ -32,7 +32,8 @@ class SettlementsController < ApplicationController
 
 
   def quarterlyreports
-  
+ 		@slots = Slot.report(2014)
+		@yearlyslots = Slot.by_year(2014).size
   end
 
   def showqreport

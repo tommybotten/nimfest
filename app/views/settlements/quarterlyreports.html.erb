@@ -1,1 +1,67 @@
 
+<h1>Quarterly reports</h1><br />
+
+<table class="table table-bordered">
+	<tr>
+		<th>Jump type</th>
+		<th>Total</th>
+		<th>Januar</th>
+		<th>Februar</th>
+		<th>March</th>
+		<th>April</th>
+		<th>May</th>
+		<th>June</th>
+		<th>July</th>
+		<th>August</th>
+		<th>September</th>
+		<th>October</th>
+		<th>November</th>
+		<th>December</th>
+	</tr>
+
+	<tr>
+		<th>UL/T Failed</th>
+		<td>11</td>
+		<td>11</td>
+		<td>11</td>
+		<td>11</td>
+		<td>11</td>
+		<td>11</td>
+		<td>11</td>
+		<td>11</td>
+		<td>11</td>
+		<td>11</td>
+		<td>11</td>
+		<td>11</td>
+		<td>11</td>
+	</tr>
+
+<% @slots.each do |jumptype,data| %>
+	<tr>
+		<% # Jumptype burde kanskje gjøres group as for å få navnet til å bli penere? %>
+		<% # Feil i loop. itererer over en runde for mye. %>
+			<th>
+		<% jumptype.each do |typetext,approved| %>
+				<%= typetext %>
+				<% if approved.nil? or approved.false? %>
+					Failed
+				<% else %>
+					Approved
+				<% end %>
+		<% end %>
+			</th>
+		<% # data.each do month typ - og total til slutt som statisk enhet?%>
+		<td><%= data %></td>
+	</tr>
+<% end %>
+
+
+	<tr>
+		<th>Total stuff.</th>
+		<td><%= @yearlyslots %>
+	</tr>
+
+</table>
+
+<p>Slot -> Jumptype -> Approved? -> Month</p>
+

@@ -49,6 +49,14 @@ class Slot < ActiveRecord::Base
         where("updated_at >= ? and updated_at <= ?", bod, eod)
     end
 
+
+    def by_month(month)
+        dt = DateTime.new(month)
+        bom = dt.beginning_of_month
+        eom = dt.end_of_month
+        where("updated_at >= ? and updated_at <= ?", bom, eom)
+    end
+
     def by_year(year)
         dt = DateTime.new(year)
         boy = dt.beginning_of_year
@@ -63,6 +71,11 @@ class Slot < ActiveRecord::Base
        outstanding_hash.each {|jumper_id, sum| jumper_hash.merge!({ Jumper.find(jumper_id).name => sum }) }
        return jumper_hash
     end
+
+		def report(year)
+			# Group by month savnes her...
+			slots_group = self.by_year(year).group(:jumptype).group(:approved).size
+		end
 
 
 		# Available jump types
