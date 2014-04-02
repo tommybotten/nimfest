@@ -67,7 +67,7 @@ class Jumper < ActiveRecord::Base
 		def available
 			# More logic might come in here. For instance paid previous loads days,
 			# and so on.
-			return Jumper.where(:verified => true)
+			return Jumper.where(:verified => true).order(:name)
 		end
  
 #    def frequent_flyer

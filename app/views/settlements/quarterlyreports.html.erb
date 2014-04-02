@@ -4,6 +4,7 @@
 <table class="table table-bordered">
 	<tr>
 		<th>Jump type</th>
+		<th>Approved?</th>
 		<th>Total</th>
 		<th>Januar</th>
 		<th>Februar</th>
@@ -17,51 +18,67 @@
 		<th>October</th>
 		<th>November</th>
 		<th>December</th>
-	</tr>
+  </tr>
 
-	<tr>
-		<th>UL/T Failed</th>
-		<td>11</td>
-		<td>11</td>
-		<td>11</td>
-		<td>11</td>
-		<td>11</td>
-		<td>11</td>
-		<td>11</td>
-		<td>11</td>
-		<td>11</td>
-		<td>11</td>
-		<td>11</td>
-		<td>11</td>
-		<td>11</td>
-	</tr>
-
-<% @slots.each do |jumptype,data| %>
-	<tr>
-		<% # Jumptype burde kanskje gjøres group as for å få navnet til å bli penere? %>
-		<% # Feil i loop. itererer over en runde for mye. %>
-			<th>
-		<% jumptype.each do |typetext,approved| %>
-				<%= typetext %>
-				<% if approved.nil? or approved.false? %>
-					Failed
-				<% else %>
-					Approved
-				<% end %>
-		<% end %>
-			</th>
-		<% # data.each do month typ - og total til slutt som statisk enhet?%>
-		<td><%= data %></td>
+<% @slots.each do |jump_array| %>
+  <tr>
+    <td><%= jump_array[0] %></td>
+    <% if jump_array[1].nil? %>
+      <td>N/A</td>
+    <% elsif jump_array[1] %>
+      <td>Approved</td>
+    <% else %>
+      <td>Failed</td>
+    <% end %>
+    <td>Total</td>
+    <td><%= jump_array[2] %></td>
+    <td><%= jump_array[3] %></td>
 	</tr>
 <% end %>
 
-
 	<tr>
-		<th>Total stuff.</th>
+    <th>Total</th>
+    <td></td>
 		<td><%= @yearlyslots %>
+    <% while @startmonth <= Time.now.month %>
+      <td><%= Slot.by_month(@startmonth).size %>
+      <% @startmonth = @startmonth +1  %>
+    <% end %>
 	</tr>
 
 </table>
 
+<p>Alternative</p>
+
+
+<table class="table table-bordered">
+
+  <tr>
+    <th>Jumptype</th>
+    <th>Approved</th>
+    <th>Month</th>
+    <th>Count</th>
+  </tr>
+<% @slots.each do |jump_array| %>
+  <tr>
+    <td><%= jump_array[0] %></td>
+    <% if jump_array[1].nil? %>
+      <td>N/A</td>
+    <% elsif jump_array[1] %>
+      <td>Approved</td>
+    <% else %>
+      <td>Failed</td>
+    <% end %>
+    <td><%= Time.new(Time.now.year, jump_array[2]).strftime("%b %Y") %></td>
+    <td><%= jump_array[3] %></td>
+	</tr>
+<% end %>
+
+
+</table>
 <p>Slot -> Jumptype -> Approved? -> Month</p>
 
+<p>Data structure should be:
+Jumptype/approval, month (by load departure_time), size of slots.</p>
+<p>{ ["UL","Approved]: {1, 24}, {2, 30}, ["UL-T","Failed]: {1, 32}, {2,40} }</p>
+<p>{ [jumprtypestring,approvedstring]: {month_of_load_int, size_of_slots_int}}</p>

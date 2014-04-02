@@ -12,11 +12,7 @@ class Slot < ActiveRecord::Base
     "FF-30 sekunder",
     "FS-Utsjekk",
     "FF-Utsjekk",
-    "Utfyllingshopp, elev",
-    "Wingsuit",
-    "AFF",
-    "Hop and pop",
-    "Fjellflyging"]
+    "Utfyllingshopp, elev"]
 
   before_validation :set_default_price
   before_create :verify_duplicate_jumper
@@ -51,7 +47,7 @@ class Slot < ActiveRecord::Base
 
 
     def by_month(month)
-        dt = DateTime.new(month)
+        dt = DateTime.new(Time.now.year,month)
         bom = dt.beginning_of_month
         eom = dt.end_of_month
         where("updated_at >= ? and updated_at <= ?", bom, eom)
@@ -72,10 +68,24 @@ class Slot < ActiveRecord::Base
        return jumper_hash
     end
 
+    def total_this_year
+      self.by_year(Time.now.year).size
+    end
+
+
 		def report(year)
 			# Group by month savnes her...
-			slots_group = self.by_year(year).group(:jumptype).group(:approved).size
+			#slots_group = self.by_year(year).group(:jumptype).group(:approved).size
+			#return self.by_year(year).group(:jumptype).group(:approved).group_by {|m| m.load.departure_timestamp.beginning_of_month..m.load.departure_timestamp.end_of_month}
+      # Slot.by_year(2014).group_by { |m| m.jumptype }.group_by {|m| m.load.departure_timestamp.beginning_of_month..m.load.departure_timestamp.end_of_month}
+			# return self.by_year(year).group(:jumptype).group(:approved)
+			#return self.by_year(year).group_by {|m| m.load.departure_timestamp.beginning_of_month..m.load.departure_timestamp.end_of_month}
+      return self.by_year(year).all.group_by { |s| [s.jumptype, s.approved, s.load.departure_timestamp.beginning_of_month..s.load.departure_timestamp.end_of_month]}.map {|k,v| [k[0],k[1], k.last.begin.month, v.length]}
 		end
+
+
+
+     Slot.all.group_by { |s| [s.jumptype, s.approved,  s.load.departure_timestamp.beginning_of_month..s.load.departure_timestamp.end_of_month]}.map {|k,v| [k[0], k[1],k.last.begin.month, v.length]}
 
 
 		# Available jump types
