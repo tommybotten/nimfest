@@ -42,7 +42,7 @@ class Slot < ActiveRecord::Base
         dt = date.to_time
         bod = dt.beginning_of_day
         eod = dt.end_of_day
-        where("updated_at >= ? and updated_at <= ?", bod, eod)
+        where("created_at >= ? and created_at <= ?", bod, eod)
     end
 
 
@@ -50,14 +50,14 @@ class Slot < ActiveRecord::Base
         dt = DateTime.new(Time.now.year,month)
         bom = dt.beginning_of_month
         eom = dt.end_of_month
-        where("updated_at >= ? and updated_at <= ?", bom, eom)
+        where("created_at >= ? and created_at <= ?", bom, eom)
     end
 
     def by_year(year)
         dt = DateTime.new(year)
         boy = dt.beginning_of_year
         eoy = dt.end_of_year
-        where("updated_at >= ? and updated_at <= ?", boy, eoy)
+        where("created_at >= ? and created_at <= ?", boy, eoy)
     end
 
     def outstanding_by_day(date)
@@ -74,19 +74,12 @@ class Slot < ActiveRecord::Base
 
 
 		def report(year)
-			# Group by month savnes her...
-			#slots_group = self.by_year(year).group(:jumptype).group(:approved).size
-			#return self.by_year(year).group(:jumptype).group(:approved).group_by {|m| m.load.departure_timestamp.beginning_of_month..m.load.departure_timestamp.end_of_month}
-      # Slot.by_year(2014).group_by { |m| m.jumptype }.group_by {|m| m.load.departure_timestamp.beginning_of_month..m.load.departure_timestamp.end_of_month}
-			# return self.by_year(year).group(:jumptype).group(:approved)
-			#return self.by_year(year).group_by {|m| m.load.departure_timestamp.beginning_of_month..m.load.departure_timestamp.end_of_month}
       return self.by_year(year).all.group_by { |s| [s.jumptype, s.approved, s.load.departure_timestamp.beginning_of_month..s.load.departure_timestamp.end_of_month]}.map {|k,v| [k[0],k[1], k.last.begin.month, v.length]}
 		end
 
-
-
-     Slot.all.group_by { |s| [s.jumptype, s.approved,  s.load.departure_timestamp.beginning_of_month..s.load.departure_timestamp.end_of_month]}.map {|k,v| [k[0], k[1],k.last.begin.month, v.length]}
-
+    def report_month(month)
+      self.by_month(month).group_by { |s| [s.jumptype, s.approved, s.load.departure_timestamp.beginning_of_month..s.load.departure_timestamp.end_of_month]}.map {|k,v| [k[0],k[1], v.length]}
+    end
 
 		# Available jump types
     def jumptypes
