@@ -28,14 +28,16 @@
     <td class="field">
 	    <%= f.label :departure_timestamp %><br>
       <div id="datetimepicker1" class="input-append date">
-        <%= f.text_field :departure_timestamp,options = { "data-format" => "yyyy-MM-dd hh:mm:ss"} %>
+        <%= f.text_field :departure_timestamp,options = { "data-format" => "yyyy-MM-dd hh:mm"} %>
         <span class="add-on">
           <i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
         </span>
       </div>
     <script type="text/javascript">
   $(function() {
-          $('#datetimepicker1').datetimepicker({
+      $('#datetimepicker1').datetimepicker({
+                  pickDate: false,
+                  pickSeconds: false,
                   language: 'pt-BR'
                       });
             });
