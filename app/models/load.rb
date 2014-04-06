@@ -45,6 +45,13 @@ class Load < ActiveRecord::Base
 			self.order(departure_timestamp: :desc).where(:state => "Manifesting")
 		end
 
+    def by_year(year)
+        dt = DateTime.new(year)
+        boy = dt.beginning_of_year
+        eoy = dt.end_of_year
+        where("departure_timestamp >= ? and departure_timestamp <= ?", boy, eoy)
+    end
+
     def today
       self.where(:created_at => (Time.now.beginning_of_day..Time.now.end_of_day))
     end

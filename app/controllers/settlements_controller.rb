@@ -6,6 +6,12 @@ class SettlementsController < ApplicationController
     @ff_top_ten = Slot.find(:all, :select => 'count(*) count, jumper_id', :group => 'jumper_id', :order => 'count DESC', :limit => 10)
 		@jumpers = Jumper.all
     @load_dates = Load.dates
+		@loads_this_year = Load.by_year(Time.now.year)
+		@average_skydives_load = Slot.total_this_year/@loads_this_year.size.to_f
+		@flight_hours_this_year = @loads_this_year.sum(:flighttime)
+		@total_flighttime_cost = @flight_hours_this_year/60.to_f * Aircraft.first.price
+		@slots_total_paid_this_year = Slot.by_year(2014).sum(:price)
+
   end
 
   def show
