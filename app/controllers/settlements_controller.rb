@@ -11,7 +11,7 @@ class SettlementsController < ApplicationController
 		@flight_hours_this_year = @loads_this_year.sum(:flighttime)
 		@total_flighttime_cost = @flight_hours_this_year/60.to_f * Aircraft.first.price
 		@slots_total_paid_this_year = Slot.by_year(2014).sum(:price)
-
+		@average_slot_height = Slot.by_year(2014).sum(:height) / Slot.by_year(2014).size
   end
 
   def show
