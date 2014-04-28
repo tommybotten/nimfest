@@ -6,7 +6,7 @@
 	<li><strong><%= @flight_hours_this_year /60.to_f %> hours on all aircrafts combined. ( <%= @flight_hours_this_year / @loads_this_year.size %> minutes pr. load on average)</strong></li>
 	<li><strong><%= @total_flighttime_cost.to_i %> NOK paid in flight cost this year</strong></li>
 	<li><strong><%= @slots_total_paid_this_year %> NOK paid by skydivers this year (<%= @slots_total_paid_this_year - @total_flighttime_cost %> in total)</strong></li>
-	<li><strong>The average skydiver jumped from <%= @average_slot_height %> feet</strong></li>
+	<li><strong>The average exit height was <%= @average_slot_height %> feet</strong></li>
 </ul>
 
 
