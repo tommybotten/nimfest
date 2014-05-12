@@ -14,6 +14,17 @@ class SettlementsController < ApplicationController
 		@slots_total_paid_this_year = Slot.by_year(2014).sum(:price)
 		@average_slot_height = Slot.by_year(2014).sum(:height) / Slot.by_year(2014).size
 		@active_jumpers = Slot.by_year(Time.now.year).group(:jumper_id).size.size
+
+		@height_stats = Slot.height_stats
+
+		@chart5 = LazyHighCharts::HighChart.new('column') do |f|
+        f.series(:name=>'Height',:data=> @height_stats)
+        f.title({ :text=>"Number of slots for given amount of slots."})
+        f.options[:chart][:defaultSeriesType] = "column"
+        f.plot_options({:column=>{:stacking=>"true"}})
+    end
+
+	
   end
 
   def show
@@ -29,6 +40,7 @@ class SettlementsController < ApplicationController
         f.options[:chart][:defaultSeriesType] = "column"
         f.plot_options({:column=>{:stacking=>"true"}})
     end
+
   end
 
 
