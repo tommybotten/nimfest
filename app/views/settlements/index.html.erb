@@ -11,21 +11,23 @@
 
 
 <h3>Statistics</h3>
-<strong>Frequent flyer top 10</strong>
+<strong>Frequent flyer</strong>
 <table class="table table-bordered">
   <tr>
     <th>Name</th>
     <th>Skydives <%= Time.now.year %></th>
     <td>Total number of skydives</td>
   </tr>
-  <% @ff_top_ten.each do |slot| %>
+
+  <% @frequent_flyer.each do |jumper| %>
     <tr>
-      <% jumper = @jumpers.where(id: slot.jumper_id).first %>
-      <td><%= link_to jumper.name, jumper_path(jumper) %></td>
-      <td><%= jumper.slots.by_year(Time.now.year).size %></td>
-      <td><%= slot.count %></td>
+      <% skydiver = @jumpers.find(jumper[0]) %>
+      <td><%= link_to skydiver.name, jumper_path(skydiver) %></td>
+      <td><%= jumper[1] %></td>
+      <td><%= skydiver.slots.by_year(Time.now.year).size %></td>
     </tr>
 	<% end %>
+
 </table>
 
 

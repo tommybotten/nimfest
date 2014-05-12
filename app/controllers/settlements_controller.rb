@@ -4,6 +4,7 @@ class SettlementsController < ApplicationController
     @total_outstanding = Slot.total_not_paid
     @loads = Load.all
     @ff_top_ten = Slot.find(:all, :select => 'count(*) count, jumper_id', :group => 'jumper_id', :order => 'count DESC', :limit => 10)
+		@frequent_flyer = Jumper.frequent_flyer
 		@jumpers = Jumper.all
     @load_dates = Load.dates
 		@loads_this_year = Load.by_year(Time.now.year)
