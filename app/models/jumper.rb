@@ -6,6 +6,8 @@ class Jumper < ActiveRecord::Base
 		:allow_blank => false
 	validates_uniqueness_of :name, :licensenumber, :phone, :email
 
+#	scope :jumpdays, -> { self.loads.
+
 
   has_and_belongs_to_many :clubs
   has_and_belongs_to_many :ratings
@@ -49,7 +51,6 @@ class Jumper < ActiveRecord::Base
 		end
 	end
 
- 
   class << self
 		# Available licenses
     def licenses
