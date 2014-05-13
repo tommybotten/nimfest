@@ -71,7 +71,7 @@ class Jumper < ActiveRecord::Base
 		end
  
     def frequent_flyer
-			Slot.all.group(:jumper_id).size.sort_by { |id, jumps | jumps }.reverse
+			Slot.by_year(Time.now.year).group(:jumper_id).size.sort_by { |id, jumps | jumps }.reverse
     end
   end
 

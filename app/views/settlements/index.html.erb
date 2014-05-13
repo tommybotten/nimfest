@@ -28,7 +28,7 @@
       <% skydiver = @jumpers.find(jumper[0]) %>
       <td><%= link_to skydiver.name, jumper_path(skydiver) %></td>
       <td><%= jumper[1] %></td>
-      <td><%= skydiver.slots.by_year(Time.now.year).size %></td>
+      <td><%= skydiver.slots.size %></td>
     </tr>
 	<% end %>
 
