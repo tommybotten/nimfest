@@ -19,7 +19,7 @@ class SettlementsController < ApplicationController
 
 		@chart5 = LazyHighCharts::HighChart.new('column') do |f|
         f.series(:name=>'Number of slots',:data=> @height_stats)
-        f.title({ :text=>"Number of slots for given amount of slots."})
+        f.title({ :text=>"Number of slots for each height."})
         f.options[:chart][:defaultSeriesType] = "column"
     end
 
