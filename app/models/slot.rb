@@ -16,6 +16,8 @@ class Slot < ActiveRecord::Base
 
 	scope :height_stats, -> { Slot.all.group_by(&:height).map {|k,v| [k, v.length]}.sort }
 
+
+
   before_validation :set_default_price
   before_create :verify_duplicate_jumper
   # Breaks _any_ update:

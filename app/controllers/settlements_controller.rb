@@ -15,11 +15,16 @@ class SettlementsController < ApplicationController
 		@average_slot_height = Slot.by_year(2014).sum(:height) / Slot.by_year(2014).size
 		@active_jumpers = Slot.by_year(Time.now.year).group(:jumper_id).size.size
 
+		@monthly_slots = Slot.by_month(Time.now.month).size
+#		Load.by_month(Time.now.month).each do |load|
+#			@monthly_slots = load.slots.size + @monthly_slots
+#		end
+
 		@height_stats = Slot.height_stats
 
 		@chart5 = LazyHighCharts::HighChart.new('column') do |f|
         f.series(:name=>'Number of slots',:data=> @height_stats)
-        f.title({ :text=>"Number of slots for given amount of slots."})
+        f.title({ :text=>"Number of slots for given height."})
         f.options[:chart][:defaultSeriesType] = "column"
     end
 

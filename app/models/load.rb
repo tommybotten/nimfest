@@ -45,6 +45,13 @@ class Load < ActiveRecord::Base
 			self.order(departure_timestamp: :desc).where(:state => "Manifesting")
 		end
 
+    def by_month(month)
+        dt = DateTime.new(Time.now.year,month)
+        bom = dt.beginning_of_month
+        eom = dt.end_of_month
+        where("departure_timestamp >= ? and departure_timestamp <= ?", bom, eom)
+    end
+
     def by_year(year)
         dt = DateTime.new(year)
         boy = dt.beginning_of_year

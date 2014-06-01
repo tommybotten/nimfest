@@ -8,6 +8,11 @@
 	<li><strong><%= @slots_total_paid_this_year %> NOK paid by skydivers this year (<%= @slots_total_paid_this_year - @total_flighttime_cost %> in total)</strong></li>
 	<li><strong>The average exit height was <%= @average_slot_height %> feet</strong></li>
 	<li><strong>We have <%= @jumpers.size %> registered skydivers whereas <%= @active_jumpers %> of these have jumped with us this year</strong></li>
+	<li><strong>We have done <%= @monthly_slots %> jumps this month</strong></li>
+	<% for month in 1..12 do %>
+		<li><strong><%= Slot.by_month(month).size %> jumps in <%= DateTime.new(Time.now.year, month).strftime("%B") %> </li></strong>
+	<% end %>
+
 </ul>
 
 
