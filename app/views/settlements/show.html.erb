@@ -2,7 +2,7 @@
 <p>
 <%= link_to "Todays load", settlement_path(Time.now.strftime("%Y-%m-%d")) %>
 </p>
-<%= select_tag 'date_id', content_tag(:option,'Select date',:value=>"")+options_from_collection_for_select(Load.dates, 'to_s', 'to_s') %>
+<%= select_tag 'date_id', content_tag(:option,'Select date',:value=>"")+options_from_collection_for_select(Load.dates.reverse, 'to_s', 'to_s') %>
 <script>
     $(function(){
       $('#date_id').bind('change', function () {
@@ -15,43 +15,7 @@
     });
 </script>
 
-<h1>Statistics</h1>
-<%= high_chart("my_id4", @chart4) %>
-
-<h1>Loads</h1>
-
-  <% @loads.each do |load| %>
-    <h2><%= link_to "Load " + load.loadfortheday.to_s , edit_load_path(load) %> <%= load.departure_timestamp.strftime("%H:%M") if load.departure_timestamp? %></h2>
-    <table class="table table-bordered">
-      <thead>
-        <tr>
-          <th>Pilot: <%= load.pilot %></th>
-          <th>Aircraft: <%= load.aircraft.name %></th>
-          <th>DropZone: <%= load.location %></th>
-          <th>HFL: <%= load.hfl %></th>
-          <th>HL: <%= link_to load.hl.name, load.hl if load.hl %></th>
-        </tr>
-        <tr>
-          <th>Skydiver</th>
-          <th>License</th>
-          <th>Altitude</th>
-          <th>Jumptype</th>
-          <th>Price</th>
-        </tr>
-      </thead>
-      <% load.slots.each do |slot| -%>
-        <tr <%= 'class=success' if slot.jumpmaster? -%><%= 'class=warning' if slot.missing_approval -%>>
-          <td><%= link_to slot.jumper.name, jumper_path(slot.jumper) %></td>
-          <td><%= slot.jumper.license %></td>
-          <td><%= slot.height %></td>
-          <td><%= slot.jumptype %></td>
-          <td><%= slot.price %></td>
-        </tr>
-      <% end -%>
-    </table>
-  <% end %>
-
-  <h1>Settlements and economy</h1>
+<h1>Settlements and economy</h1>
 
   <table class="table table-bordered">
     <tr>
@@ -83,6 +47,38 @@
       <th><%=tot_result%></th>
     </tr>
 </table>
+
+<% @loads.each do |load| %>
+  <h2><%= link_to "Load " + load.loadfortheday.to_s , edit_load_path(load) %> <%= load.departure_timestamp.strftime("%H:%M") if load.departure_timestamp? %></h2>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Pilot: <%= load.pilot %></th>
+        <th>Aircraft: <%= load.aircraft.name %></th>
+        <th>DropZone: <%= load.location %></th>
+        <th>HFL: <%= load.hfl %></th>
+        <th>HL: <%= link_to load.hl.name, load.hl if load.hl %></th>
+      </tr>
+      <tr>
+        <th>Skydiver</th>
+        <th>License</th>
+        <th>Altitude</th>
+        <th>Jumptype</th>
+        <th>Price</th>
+      </tr>
+    </thead>
+    <% load.slots.each do |slot| -%>
+      <tr <%= 'class=success' if slot.jumpmaster? -%><%= 'class=warning' if slot.missing_approval -%>>
+        <td><%= link_to slot.jumper.name, jumper_path(slot.jumper) %></td>
+        <td><%= slot.jumper.license %></td>
+        <td><%= slot.height %></td>
+        <td><%= slot.jumptype %></td>
+        <td><%= slot.price %></td>
+      </tr>
+    <% end -%>
+  </table>
+<% end %>
+
 
 <h2>Payment information</h2>
 <table class="table table-bordered">
