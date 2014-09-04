@@ -19,6 +19,7 @@ class LoadsController < ApplicationController
 		@load.pilot ||= Load.last.pilot if Load.last.present? 
 		@load.location ||= Load.last.location if Load.last.present? 
 		@load.aircraft ||= Load.last.aircraft if Load.last.present? 
+		@load.hl ||= Load.last.hl if Load.last.present?
 		@load.hfl ||= Load.last.hfl if Load.last.present? 
 		@slots = Slot.new
   end
