@@ -8,6 +8,7 @@ Migrationtest::Application.routes.draw do
   resources :ratings
   match "quarterlyreports/:quarter" => "settlements#showqreport", via: :get
   match "quarterlyreports/" => "settlements#quarterlyreports", via: :get
+  match "missingreport/" => "settlements#missingreport", via: :get
   resources :settlements do
     get 'reports/:year', to: 'settlements#reports'
 		collection do

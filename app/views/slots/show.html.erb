@@ -1,6 +1,11 @@
 <p id="notice"><%= notice %></p>
 
 <p>
+  <strong>Load and Load date:</strong>
+  <%= link_to("foo",edit_load_path(@slot.load.id) ) %>
+</p>
+
+<p>
   <strong>Height:</strong>
   <%= @slot.height %>
 </p>

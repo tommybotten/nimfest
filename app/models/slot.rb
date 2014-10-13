@@ -76,6 +76,10 @@ class Slot < ActiveRecord::Base
       self.by_year(Time.now.year).size
     end
 
+    def missing
+      self.where("approved IS ? and jumptype != ?", nil, "Treningshopp")
+    end
+
 
 		def report(year)
       return self.by_year(year).all.group_by { |s| [s.jumptype, s.approved, s.load.departure_timestamp.beginning_of_month..s.load.departure_timestamp.end_of_month]}.map {|k,v| [k[0],k[1], k.last.begin.month, v.length]}

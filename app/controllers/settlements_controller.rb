@@ -54,6 +54,10 @@ class SettlementsController < ApplicationController
 		redirect_to(:back)
 	end
 
+  def missingreport
+    @missing_slots = Slot.missing 
+  end
+
 
   def quarterlyreports
     @startmonth = 1
