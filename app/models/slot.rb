@@ -77,7 +77,7 @@ class Slot < ActiveRecord::Base
     end
 
     def missing
-      self.where("approved IS ? and jumptype != ?", nil, "Treningshopp")
+      self.where("approved IS ? and jumptype != ? and jumptype != ?", nil, "Treningshopp","Demo")
     end
 
 
